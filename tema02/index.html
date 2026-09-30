@@ -9,90 +9,101 @@
     
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
 
-        <link href="css/estilos.css" rel="stylesheet">
+        <link href="css/estilos.css" rel="stylesheet" type="text/css">
+        
     </head>
-    <body class="bg-body-secondary">
-        <nav class="navbar navbar-light border-bottom">
+    <body class="bg-light">
+        <nav class="navbar bg-primary-subtle border-bottom">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">David Iglesias Borland</a>
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Index</a>
+                        <a class="nav-link text-black active" aria-current="page" href="index.html">Index</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="interaccion.html">Interaccion</a>
+                        <a class="nav-link text-black active" aria-current="page" href="interaccion.html">Interaccion</a>
                     </li>
                 </ul>
             </div>
         </nav>
         <main class="container col-12">
             <div class="row">
-                <table class="table table-responsive table-light caption-top align-middle text text-center">
-                    <caption class="text-center">Comparativa de navegadores y sus motores</caption>
-                    <thead class="table-primary">
-                        <tr>
-                            <th scope="col" class="">Navegador</th>
-                            <th scope="col" class="">Empresa</th>
-                            <th scope="col" class="">Motor</th>
-                            <th scope="col" class="">Motor JS</th>
-                            <th scope="col" class="">Basado en Chromium</th> 
-                        </tr>
-                    </thead>
-                    <tbody class="">
-                        <tr>
-                            <th scope="row">Opera</th>
-                            <td>Opera Software</td>
-                            <td>Blink</td>
-                            <td>V8</td>
-                            <td>Si</td>  
-                        </tr>
-                        <tr>
-                            <th scope="row">Chrome</th>
-                            <td>Alphabet Inc.</td>
-                            <td>Blink</td>
-                            <td>V8</td>
-                            <td>Si</td>  
-                        </tr>
-                        <tr>
-                            <th scope="row">Microsoft Edge</th>
-                            <td>Microsoft Corporation</td>
-                            <td>Blink</td>
-                            <td>V8</td>
-                            <td>Si</td>  
-                        </tr>
-                        <tr>
-                            <th scope="row">Firefox</th>
-                            <td>Corporación Mozilla</td>
-                            <td>Gecko</td>
-                            <td>SpiderMonkey</td>
-                            <td>No</td>  
-                        </tr>
-                        
-                        <tr>
-                            <th scope="row">Safari</th>
-                            <td>Apple Inc.</td>
-                            <td>WebKit</td>
-                            <td>JavaScriptCore</td>
-                            <td>No</td>  
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="col-12 m-2 p-3">
+                    <table class="table border table-hover bg-white caption-top align-middle text text-center w-75 mx-auto">
+                        <caption class="text-center">Comparativa de navegadores y sus motores</caption>
+                        <thead class="table-primary">
+                            <tr>
+                                <th scope="col" class="">Navegador</th>
+                                <th scope="col" class="">Empresa</th>
+                                <th scope="col" class="">Motor</th>
+                                <th scope="col" class="">Motor JS</th>
+                                <th scope="col" class="">Basado en Chromium</th> 
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <tr>
+                                <th scope="row"><i class="bi bi-circle"></i></i> Opera</th>
+                                <td>Opera Software</td>
+                                <td>Blink</td>
+                                <td>V8</td>
+                                <td>Si</td>  
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="bi bi-browser-chrome"></i> Chrome</th>
+                                <td>Alphabet Inc.</td>
+                                <td>Blink</td>
+                                <td>V8</td>
+                                <td>Si</td>  
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="bi bi-browser-edge"></i> Microsoft Edge</th>
+                                <td>Microsoft Corporation</td>
+                                <td>Blink</td>
+                                <td>V8</td>
+                                <td>Si</td>  
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="bi bi-browser-firefox"></i> Firefox</th>
+                                <td>Corporación Mozilla</td>
+                                <td>Gecko</td>
+                                <td>SpiderMonkey</td>
+                                <td>No</td>  
+                            </tr>
+                            
+                            <tr>
+                                <th scope="row"><i class="bi bi-browser-safari"></i> Safari</th>
+                                <td>Apple Inc.</td>
+                                <td>WebKit</td>
+                                <td>JavaScriptCore</td>
+                                <td>No</td>  
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="row text-wrap">
-                <div class=" col-12 col-md-6">
-                    <h5>¿Por qué casi todos los navegadores comparten motor?</h5>
-                    <p>Crear y mantener un motor de renderizado es carísimo: tiene que interpretar HTML, CSS y JavaScript cumpliendo miles de especificaciones que no paran de cambiar. Por eso la mayoría de empresas prefieren partir de Chromium, el proyecto de código abierto de Google, y construir su navegador encima. Así, Chrome, Edge y Opera comparten el motor Blink y el motor de JavaScript V8. Los únicos grandes que se quedan fuera son Firefox, con Gecko, y Safari, con WebKit. Para quien desarrolla una web, esto tiene una parte buena y una mala. La buena es que, si funciona en Chrome, probablemente funcione en casi todos los demás. La mala es que eso no basta: Firefox y Safari pueden comportarse de forma distinta, y además tanta dependencia de un solo motor hace que Google tenga mucho poder sobre cómo evoluciona la web.</p>
+                <div class=" col-12 col-md-8">
+                    <div class="card m-2 p-3">
+                        <h5><i class="bi bi-bullseye m-2 text-danger"></i>¿Por qué casi todos los navegadores comparten motor?</h5>
+                        <p class="m-3 texto-justificado">Crear y mantener un motor de renderizado es carísimo: tiene que interpretar HTML, CSS y JavaScript cumpliendo miles de especificaciones que no paran de cambiar. Por eso la mayoría de empresas prefieren partir de Chromium, el proyecto de código abierto de Google, y construir su navegador encima. Así, Chrome, Edge y Opera comparten el motor Blink y el motor de JavaScript V8. Los únicos grandes que se quedan fuera son Firefox, con Gecko, y Safari, con WebKit. Para quien desarrolla una web, esto tiene una parte buena y una mala. La buena es que, si funciona en Chrome, probablemente funcione en casi todos los demás. La mala es que eso no basta: Firefox y Safari pueden comportarse de forma distinta, y además tanta dependencia de un solo motor hace que Google tenga mucho poder sobre cómo evoluciona la web.</p>
+                    </div>
+                    <div class="card m-2 p-3">
+                        <h5><i class="bi bi-patch-question-fill m-2 text-primary"></i>¿En qué navegadores probaría una web?</h5>
+                        <p class="m-3 texto-justificado">Lo mejor sería intentar hacer una web que sea compatible con los tres motores principales (Blink, Webkit, Gecko), aunque si debemos elegir un navegador con el que probar nuestro código, elegiría Chrome, ya que es el más utilizado. A día de hoy la forma más común de acceso a un navegador es mediante el móvil, por lo que adaptaría la página también a Safari.</p>
+                    </div>
                 </div>
-                <div class=" col-12 col-md-6">
-                    <aside class="card h-100 m-2 p-3">
-                        <h5>Un caso de compatibilidad real</h5>
-                        <p>Hay 4 casos que son bastante notorios por su incompatibilidad:</p>
-                        <ol>
-                            <li>Vibración del móvil con navigator.vibrate(): esta función está pensada para ahcer vibrar el teléfono tras una acción. Funciona en Chrome y en Edge, pero no en Firefox y Safari.</li>
-                            <li>Personalizar el la etiqueta select con CSS: </li>
-                            <li>Web Bluetooth: </li>
-                            <li>Cuentagotas con la API EyeDropper: </li>
-                        </ol>
+                <div class=" col-12 col-md-4">
+                    <aside class="card m-2 p-2 pt-3">
+                        <h5><i class="bi bi-info-circle m-2 text-primary"></i>Un caso de compatibilidad real</h5>
+                        <div class="m-3">
+                            <p>Hay 4 casos que son bastante notorios por su incompatibilidad:</p>
+                            <ol>
+                                <li><b>Vibración del móvil con navigator.vibrate()</b>: esta función está pensada para ahcer vibrar el teléfono tras una acción. Funciona en Chrome y en Edge, pero no en Firefox y Safari.</li><br/>
+                                <li><b>Personalizar el la etiqueta select con CSS</b>: sirve para dar estilo completo a los desplegables, que hasta ahora eran casi imposibles de personalizar. Chrome lo soporta desde la versión 135 (abril de 2025), Safari desde la 27, publicada el 14 de septiembre de 2026, y Firefox todavía no.</li><br/>
+                                <li><b>Web Bluetooth</b>: permite que una web se conecte a dispositivos Bluetooth cercanos. Chrome lo tiene desde la versión 70 y Edge desde la 79, mientras que Firefox no lo soporta y su postura es negativa, y Safari tampoco.</li><br/>
+                                <li><b>Cuentagotas con la API EyeDropper</b>: abre una herramienta para elegir cualquier color de la pantalla. Está en Chrome y Edge de escritorio desde la versión 96, pero no en Chrome para Android, ni en Firefox ni en Safari.</li>
+                            </ol>
+                        </div>
                     </aside>
                 </div>
             </div>

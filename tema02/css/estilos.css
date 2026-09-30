@@ -1,0 +1,5 @@
+.texto-justificado {
+            text-align: justify;
+            hyphens: auto;
+            margin: 5px;
+        }
