@@ -11,8 +11,8 @@
 
         <link href="css/estilos.css" rel="stylesheet">
     </head>
-    <body>
-        <nav class="navbar navbar-light bg-light">
+    <body class="bg-body-secondary">
+        <nav class="navbar navbar-light border-bottom">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">David Iglesias Borland</a>
                 <ul class="nav">
@@ -25,57 +25,58 @@
                 </ul>
             </div>
         </nav>
-        <div class="container">
-            <table class="table table-responsive">
-                <thead>
+        <main class="container">
+            <table class="table table-light table-striped caption-top align-middle text text-center rounded">
+                <caption>Navegadores y motores</caption>
+                <thead class="table-dark">
                     <tr>
-                        <th>Navegador</th>
-                        <th>Empresa</th>
-                        <th>Motor</th>
-                        <th>Motor JS</th>
-                        <th>Chromium based</th> 
+                        <th scope="col" class="p-2">Navegador</th>
+                        <th scope="col" class="p-2">Empresa</th>
+                        <th scope="col" class="p-2">Motor</th>
+                        <th scope="col" class="p-2">Motor JS</th>
+                        <th scope="col" class="p-2">Basado en Chromium</th> 
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="">
                     <tr>
-                        <td>Opera</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>  
+                        <th scope="row">Opera</th>
+                        <td>Opera Software</td>
+                        <td>Blink</td>
+                        <td>V8</td>
+                        <td>Si</td>  
                     </tr>
                     <tr>
-                        <td>Chrome</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>  
+                        <th scope="row">Chrome</th>
+                        <td>Alphabet Inc.</td>
+                        <td>Blink</td>
+                        <td>V8</td>
+                        <td>Si</td>  
                     </tr>
                     <tr>
-                        <td>Microsoft Edge</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>  
+                        <th scope="row">Microsoft Edge</th>
+                        <td>Microsoft Corporation</td>
+                        <td>Blink</td>
+                        <td>V8</td>
+                        <td>Si</td>  
                     </tr>
                     <tr>
-                        <td>Firefox</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>  
+                        <th scope="row">Firefox</th>
+                        <td>Corporación Mozilla</td>
+                        <td>Gecko</td>
+                        <td>SpiderMonkey</td>
+                        <td>No</td>  
                     </tr>
                     
                     <tr>
-                        <td>Safari</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>  
+                        <th scope="row">Safari</th>
+                        <td>Apple Inc.</td>
+                        <td>WebKit</td>
+                        <td>JavaScriptCore</td>
+                        <td>No</td>  
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
