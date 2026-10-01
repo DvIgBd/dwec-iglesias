@@ -9,27 +9,29 @@
     
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
         <link href="css/estilos.css" rel="stylesheet" type="text/css">
         
     </head>
     <body class="bg-light">
         <nav class="navbar bg-primary-subtle border-bottom">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">David Iglesias Borland</a>
+                <a class="navbar-brand" href="../html/index.html">David Iglesias Borland</a>
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link text-black active" aria-current="page" href="index.html">Index</a>
+                        <a class="nav-link text-black active" aria-current="page" href="#tabla">Navegadores y motores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black active" aria-current="page" href="interaccion.html">Interaccion</a>
+                        <a class="nav-link text-black" href="../html/interaccion.html">Interaccion</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <main class="container col-12">
+        <main class="container">
             <div class="row">
                 <div class="col-12 m-2 p-3">
-                    <table class="table border table-hover bg-white caption-top align-middle text text-center w-75 mx-auto">
+                    <table class="table border table-hover bg-white caption-top align-middle text text-center w-75 mx-auto" id="tabla">
                         <caption class="text-center">Comparativa de navegadores y sus motores</caption>
                         <thead class="table-primary">
                             <tr>
@@ -42,28 +44,28 @@
                         </thead>
                         <tbody class="">
                             <tr>
-                                <th scope="row"><i class="bi bi-circle"></i></i> Opera</th>
+                                <th scope="row"><i class="fa-brands fa-opera" style="color: rgb(172, 0, 0);"></i> Opera</th>
                                 <td>Opera Software</td>
                                 <td>Blink</td>
                                 <td>V8</td>
                                 <td>Si</td>  
                             </tr>
                             <tr>
-                                <th scope="row"><i class="bi bi-browser-chrome"></i> Chrome</th>
+                                <th scope="row"><i class="fa-brands fa-chrome" style="color: rgb(255, 238, 0);"></i> Chrome</th>
                                 <td>Alphabet Inc.</td>
                                 <td>Blink</td>
                                 <td>V8</td>
                                 <td>Si</td>  
                             </tr>
                             <tr>
-                                <th scope="row"><i class="bi bi-browser-edge"></i> Microsoft Edge</th>
+                                <th scope="row"><i class="fa-brands fa-edge" style="color: rgb(0, 174, 255);"></i> Microsoft Edge</th>
                                 <td>Microsoft Corporation</td>
                                 <td>Blink</td>
                                 <td>V8</td>
                                 <td>Si</td>  
                             </tr>
                             <tr>
-                                <th scope="row"><i class="bi bi-browser-firefox"></i> Firefox</th>
+                                <th scope="row"><i class="fa-brands fa-firefox-browser" style="color: rgb(230, 123, 0);"></i> Firefox</th>
                                 <td>Corporación Mozilla</td>
                                 <td>Gecko</td>
                                 <td>SpiderMonkey</td>
