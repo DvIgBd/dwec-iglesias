@@ -29,30 +29,54 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <div class="card-group">
+                        <div class="card-group d-flex justify-content-center align-items-center flex-column">
                             <div class="card col-12 m-3" id="interaccion">
                                 <h2 class="card-header h5">Interaccion</h2>
                                 <p class="card-body">Añade tres botones, cada uno con un comportamiento distinto. Cada botón llama a una función de app.js (por ejemplo, con el atributo onclick):</p>
-                                <ul class="list-group list-group-numbered list-group-flush">
-                                    <li class="list-group-item">
-                                        «Saludar»: muestra un mensaje con alert() que incluya tu nombre.
-                                        <button type="button" class="btn btn-primary" onclick="saludar()">«Saludar»</button>
-                                    </li>
-                                    <li class="list-group-item">
-                                        «Simular un error»: no abre ninguna ventana; escribe un mensaje de error en la consola con console.error().
-                                        <button type="button" class="btn btn-danger" onclick="simularError()">«Simular»</button>
-                                    </li>
-                                    <li class="list-group-item">
-                                        «¿Qué navegador soy?»: muestra el valor de navigator.userAgent en un alert() y también en la consola.
-                                        <button type="button" class="btn btn-warning" onclick="queSoy()">«¿Qué navegador soy?»</button>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!--<div class="card col-6 border-0">
-                                <div class="btn-group-sm align-middle" role="group">
-                                    <button type="button" class="btn btn-dark">«Extra»</button>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                            Saludar
+                                        </button>
+                                        </h2>
+                                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">«Saludar»: muestra un mensaje con alert() que incluya tu nombre.</div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Simular error
+                                        </button>
+                                        </h2>
+                                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">«Simular un error»: no abre ninguna ventana; escribe un mensaje de error en la consola con console.error().</div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                            ¿Qué navegador soy?
+                                        </button>
+                                        </h2>
+                                        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">«¿Qué navegador soy?»: muestra el valor de navigator.userAgent en un alert() y también en la consola.</div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>-->
+                            </div>
+                            <div class="card col-6 border-1">
+                                <h2 class="card-header">Botones</h2>
+                                <div class="card-body">
+                                    <div class="btn-group-sm align-middle" role="group">
+                                        <button type="button" class="btn btn-primary" onclick="saludar()">Saludar</button>
+                                        <button type="button" class="btn btn-danger" onclick="simularError()">Simular</button>
+                                        <button type="button" class="btn btn-warning" onclick="queSoy()">¿Qué navegador soy?</button>
+                                        <button type="button" class="btn btn-dark" onclick="clicker()">Extra</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>   
