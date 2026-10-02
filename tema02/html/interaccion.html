@@ -12,17 +12,22 @@
         <link href="css/estilos.css" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar bg-primary-subtle border-bottom">
+        <nav class="navbar navbar-expand-md bg-primary-subtle border-bottom">
             <div class="container-fluid">
                 <a class="navbar-brand" href="../html/index.html">David Iglesias Borland</a>
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-black" href="../html/index.html">Navegadores y motores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-black active" aria-current="page" href="#interaccion">Interaccion</a>
-                    </li>
-                </ul>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="../html/index.html">Navegadores y motores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black active" aria-current="page" href="#interaccion">Interaccion</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <main>
