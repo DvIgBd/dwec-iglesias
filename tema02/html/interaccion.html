@@ -12,13 +12,18 @@
         <link href="css/estilos.css" rel="stylesheet">
     </head>
     <body>
+        <!-- Menú adaptable que se pliega en pantallas pequeñas -->
         <nav class="navbar navbar-expand-md bg-primary-subtle border-bottom">
+            <!-- Contenedor de ancho completo -->
             <div class="container-fluid">
                 <a class="navbar-brand" href="../html/index.html">David Iglesias Borland</a>
+                <!-- Botón para mostrar u ocultar el menú -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <!-- Contenido del menú plegable -->
                 <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <!-- Enlaces alineados a la derecha -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link text-black" href="../html/index.html">Navegadores y motores</a>
@@ -31,13 +36,17 @@
             </div>
         </nav>
         <main>
+            <!-- Contenedor y fila para centrar el contenido -->
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
+                        <!-- Agrupa las tarjetas en una columna -->
                         <div class="card-group d-flex justify-content-center align-items-center flex-column">
+                            <!-- Tarjeta con el acordeón de instrucciones -->
                             <div class="card col-12 m-3" id="interaccion">
                                 <h2 class="card-header h5">Interaccion</h2>
                                 <p class="card-body">Añade tres botones, cada uno con un comportamiento distinto. Cada botón llama a una función de app.js (por ejemplo, con el atributo onclick):</p>
+                                <!-- Acordeón con secciones que se despliegan al pulsarlas -->
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
@@ -71,9 +80,11 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Tarjeta que contiene los botones de interacción -->
                             <div class="card col-6 border-1">
                                 <h2 class="card-header">Botones</h2>
                                 <div class="card-body">
+                                    <!-- Botones apilados y centrados -->
                                     <div class="col-4 btn-group-sm d-flex justify-content-center flex-column w-auto" role="group">
                                         <button type="button" class="btn btn-primary m-1" onclick="saludar()">Saludar</button>
                                         <button type="button" class="btn btn-danger m-1" onclick="simularError()">Simular</button>
@@ -87,7 +98,7 @@
                 </div>   
             </div>
         </main>
-    <!-- JS de Bootstrap (navbar que se pliega, modales, dropdowns...). Al final del body -->
+        <!-- JavaScript de Bootstrap para el menú y el acordeón -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
         <script src="../js/app.js"></script>
     </body>

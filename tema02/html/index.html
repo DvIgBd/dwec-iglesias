@@ -5,8 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Título de la página</title>
         
+        <!-- Estilos de Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     
+        <!-- Iconos de Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -15,13 +17,18 @@
         
     </head>
     <body class="bg-light">
+        <!-- Menú que se adapta al tamaño de la pantalla -->
         <nav class="navbar navbar-expand-md bg-primary-subtle border-bottom">
+            <!-- Ocupa todo el ancho disponible -->
             <div class="container-fluid">
                 <a class="navbar-brand" href="../html/index.html">David Iglesias Borland</a>
+                <!-- Botón visible en pantallas pequeñas para abrir el menú -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <!-- El menú se pliega y despliega con el botón -->
                 <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <!-- Alinea los enlaces a la derecha -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link text-black active" aria-current="page" href="#tabla">Navegadores y motores</a>
@@ -33,11 +40,16 @@
                 </div>
             </div>
         </nav>
+        <!-- Contenedor principal de Bootstrap -->
         <main class="container">
+            <!-- Fila del sistema de rejilla -->
             <div class="row">
+                <!-- La tabla permite desplazamiento en pantallas pequeñas -->
                 <div class="table-responsive col-12 m-2 p-3">
+                    <!-- Estilos de tabla con efecto al pasar el cursor -->
                     <table class="table border table-hover bg-white caption-top align-middle text text-center w-75 mx-auto" id="tabla">
                         <caption class="text-center">Comparativa de navegadores y sus motores</caption>
+                        <!-- Encabezado de la tabla con fondo azul -->
                         <thead class="table-primary">
                             <tr>
                                 <th scope="col" class="">Navegador</th>
@@ -88,8 +100,11 @@
                     </table>
                 </div>
             </div>
+            <!-- Distribución responsive en dos columnas -->
             <div class="row text-wrap">
+                <!-- Ocupa 8 columnas en pantallas medianas y grandes -->
                 <div class=" col-12 col-md-8">
+                    <!-- Tarjetas de contenido -->
                     <div class="card m-2 p-3">
                         <h5><i class="bi bi-bullseye m-2 text-danger"></i>¿Por qué casi todos los navegadores comparten motor?</h5>
                         <p class="m-3 texto-justificado">Crear y mantener un motor de renderizado es carísimo, ya que tiene que interpretar HTML, CSS y JavaScript cumpliendo todos los requisitos a pesar del constante cambio. Este es uno de los motivos principales por los que las empresas optan por Chromium y construir su navegador encima. Los únicos grandes que se quedan fuera son Firefox (motor Gecko) y Safari (Webkit). Para quien desarrolla una web, esto tiene una parte buena y una mala. La buena es que si funciona en Chrome probablemente funcione en casi todos los demás. La mala es que eso no basta, ya que Firefox y Safari pueden no ser compatibles.</p>
@@ -99,7 +114,9 @@
                         <p class="m-3 texto-justificado">Lo mejor sería intentar hacer una web que sea compatible con los tres motores principales (Blink, Webkit, Gecko), aunque si debemos elegir un navegador con el que probar nuestro código, elegiría Chrome, ya que es el más utilizado. A día de hoy la forma más común de acceso a un navegador es mediante el móvil, por lo que adaptaría la página también a Safari.</p>
                     </div>
                 </div>
+                <!-- Ocupa 4 columnas en pantallas medianas y grandes -->
                 <div class=" col-12 col-md-4">
+                    <!-- Tarjeta para el contenido secundario -->
                     <aside class="card m-2 p-2 pt-3">
                         <h5><i class="bi bi-info-circle m-2 text-primary"></i>Un caso de compatibilidad real</h5>
                         <div class="m-3">
@@ -115,6 +132,7 @@
                 </div>
             </div>
         </main>
+        <!-- JavaScript de Bootstrap para el menú desplegable -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
