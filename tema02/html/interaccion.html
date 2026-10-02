@@ -11,7 +11,7 @@
         <!-- Tu CSS, SIEMPRE después del de Bootstrap -->
         <link href="css/estilos.css" rel="stylesheet">
 
-        <script src="script.js" defer></script>
+        <script src="/js/app.js" defer></script>
     </head>
     <body>
         <nav class="navbar bg-primary-subtle border-bottom">
@@ -38,15 +38,15 @@
                                 <ul class="list-group list-group-numbered list-group-flush">
                                     <li class="list-group-item">
                                         «Saludar»: muestra un mensaje con alert() que incluya tu nombre.
-                                        <button type="button" class="btn btn-primary">«Saludar»</button>
+                                        <button type="button" class="btn btn-primary" onclick="saludar()">«Saludar»</button>
                                     </li>
                                     <li class="list-group-item">
                                         «Simular un error»: no abre ninguna ventana; escribe un mensaje de error en la consola con console.error().
-                                        <button type="button" class="btn btn-danger">«Simular»</button>
+                                        <button type="button" class="btn btn-danger" onclick="simularError()">«Simular»</button>
                                     </li>
                                     <li class="list-group-item">
                                         «¿Qué navegador soy?»: muestra el valor de navigator.userAgent en un alert() y también en la consola.
-                                        <button type="button" class="btn btn-warning">«¿Qué navegador soy?»</button>
+                                        <button type="button" class="btn btn-warning" onclick="queSoy()">«¿Qué navegador soy?»</button>
                                     </li>
                                 </ul>
                             </div>
