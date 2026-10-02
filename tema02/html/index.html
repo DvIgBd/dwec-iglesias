@@ -87,7 +87,7 @@
                 <div class=" col-12 col-md-8">
                     <div class="card m-2 p-3">
                         <h5><i class="bi bi-bullseye m-2 text-danger"></i>¿Por qué casi todos los navegadores comparten motor?</h5>
-                        <p class="m-3 texto-justificado">Crear y mantener un motor de renderizado es carísimo: tiene que interpretar HTML, CSS y JavaScript cumpliendo miles de especificaciones que no paran de cambiar. Por eso la mayoría de empresas prefieren partir de Chromium, el proyecto de código abierto de Google, y construir su navegador encima. Así, Chrome, Edge y Opera comparten el motor Blink y el motor de JavaScript V8. Los únicos grandes que se quedan fuera son Firefox, con Gecko, y Safari, con WebKit. Para quien desarrolla una web, esto tiene una parte buena y una mala. La buena es que, si funciona en Chrome, probablemente funcione en casi todos los demás. La mala es que eso no basta: Firefox y Safari pueden comportarse de forma distinta, y además tanta dependencia de un solo motor hace que Google tenga mucho poder sobre cómo evoluciona la web.</p>
+                        <p class="m-3 texto-justificado">Crear y mantener un motor de renderizado es carísimo, ya que tiene que interpretar HTML, CSS y JavaScript cumpliendo todos los requisitos a pesar del constante cambio. Este es uno de los motivos principales por los que las empresas optan por Chromium y construir su navegador encima. Los únicos grandes que se quedan fuera son Firefox (motor Gecko) y Safari (Webkit). Para quien desarrolla una web, esto tiene una parte buena y una mala. La buena es que si funciona en Chrome probablemente funcione en casi todos los demás. La mala es que eso no basta, ya que Firefox y Safari pueden no ser compatibles.</p>
                     </div>
                     <div class="card m-2 p-3">
                         <h5><i class="bi bi-patch-question-fill m-2 text-primary"></i>¿En qué navegadores probaría una web?</h5>
@@ -100,10 +100,10 @@
                         <div class="m-3">
                             <p>Hay 4 casos que son bastante notorios por su incompatibilidad:</p>
                             <ol>
-                                <li><b>Vibración del móvil con navigator.vibrate()</b>: esta función está pensada para ahcer vibrar el teléfono tras una acción. Funciona en Chrome y en Edge, pero no en Firefox y Safari.</li><br/>
-                                <li><b>Personalizar el la etiqueta select con CSS</b>: sirve para dar estilo completo a los desplegables, que hasta ahora eran casi imposibles de personalizar. Chrome lo soporta desde la versión 135 (abril de 2025), Safari desde la 27, publicada el 14 de septiembre de 2026, y Firefox todavía no.</li><br/>
-                                <li><b>Web Bluetooth</b>: permite que una web se conecte a dispositivos Bluetooth cercanos. Chrome lo tiene desde la versión 70 y Edge desde la 79, mientras que Firefox no lo soporta y su postura es negativa, y Safari tampoco.</li><br/>
-                                <li><b>Cuentagotas con la API EyeDropper</b>: abre una herramienta para elegir cualquier color de la pantalla. Está en Chrome y Edge de escritorio desde la versión 96, pero no en Chrome para Android, ni en Firefox ni en Safari.</li>
+                                <li><b>Vibración del móvil con navigator.vibrate()</b>: esta función está pensada para hacer vibrar el teléfono tras una acción. Funciona en Chrome y en Edge, pero no en Firefox y Safari.</li><br/>
+                                <li><b>Personalizar el la etiqueta select con CSS</b>: sirve para dar estilo completo a los desplegables, que hasta ahora eran casi imposibles de personalizar. Chrome lo soporta desde la versión 135, Safari desde la 27 y Firefox todavía no.</li><br/>
+                                <li><b>Web Bluetooth</b>: permite que una web se conecte a dispositivos Bluetooth cercanos. Chrome lo tiene desde la versión 70 y Edge desde la 79, mientras que Firefox y Safari no.</li><br/>
+                                <li><b>Cuentagotas con la API EyeDropper</b>: abre una herramienta para elegir cualquier color de la pantalla. Está en Chrome y Edge de escritorio desde la versión 96, pero no Chrome, Firefox y Safari.</li>
                             </ol>
                         </div>
                     </aside>
