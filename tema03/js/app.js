@@ -76,15 +76,17 @@ function ejercicio3() {
   console.log("--- Ejercicio 3 · Coerción y comparaciones ---");
 
   // Ejemplo: una expresión que mezcla tipos
-  console.log('"5" - 2 →', "5" - 2);   // espero [tu predicción]
+  console.log('"5" - 2 →', "5" - 2);   // espero "5" - 2 → 3
 
   // TODO: cinco expresiones más que mezclen tipos (al menos dos inventadas por ti), cada una con su «espero …».
 
   // Ejemplo: la misma pareja comparada con == y con ===
-  console.log('5 == "5" →', 5 == "5");     // espero [tu predicción]
-  console.log('5 === "5" →', 5 === "5");   // espero [tu predicción]
+  console.log('5 == "5" →', 5 == "5");     // espero 5 == "5" → true
+  console.log('5 === "5" →', 5 === "5");   // espero 5 === "5" → false
 
   // TODO: haz lo mismo con 0 y false, y con null y undefined.
+  console.log(`0 == null`, 0 == null); // espero 0 == null → true
+  console.log(`0 === null`, 0 === null); // espero 0 === null → false
 }
 
 
