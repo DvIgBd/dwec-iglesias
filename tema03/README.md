@@ -1,57 +1,49 @@
 # Tarea 3 · Variables, tipos y conversiones
 
-**Autor:** [Tu nombre y apellidos] · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
-
-> **Plantilla de la tarea 3.** Cómo usarla:
->
-> 1. Copia esta carpeta en tu repositorio de DWEC y cámbiale el nombre a `tema03`.
-> 2. `index.html` trae la card del ejercicio 1 como modelo: cópiala para los ejercicios 2, 3 y 4.
-> 3. `js/app.js` trae una función por ejercicio: escribe tu código donde pone `TODO`.
-> 4. Sustituye las imágenes de `capturas/` por las tuyas, **con el mismo nombre**.
-> 5. Todo lo que va entre [corchetes] es un hueco: cámbialo por lo tuyo. Al terminar, borra este aviso.
-
-[Una o dos líneas: qué hay en esta carpeta y cómo se ve. Por ejemplo: abrir la carpeta en VS Code, pulsar **Go Live**, abrir la consola con F12 y pulsar «Ejecutar» en cada ejercicio.]
+**Autor:** David Iglesias Borland · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
 
 ## Capturas
 
 ### a) La página entera
 
-<img src="capturas/a-pagina.png" alt="La página entera con mi nombre en la navbar" width="600">
+<img src="capturas/Ejercicio1.png" alt="Ejercicio 1" width="600">
+<img src="capturas/Ejercicio2.png" alt="Ejercicio 2" width="600">
+<img src="capturas/Ejercicio3.png" alt="Ejercicio 3" width="600">
+<img src="capturas/Ejercicio4.png" alt="Ejercicio 4" width="600">
 
-[Qué se ve: tu nombre en la navbar, las cuatro cards y los fallos de predicción marcados.]
+Se puede ver mi nombre en la navbar, las cuatro cards y los fallos de predicción marcados.
 
 ### b) Consola del ejercicio 1
 
-![Consola del ejercicio 1](capturas/b-consola-ej1.png)
+![Consola del ejercicio 1](capturas/consEjercicio1.png)
 
-[Qué se ve, en una o dos líneas.]
+Podemos ver el tipado de cada variable y como al darle un valor a undefined (variable let) cambia el tipado a number.
 
 ### c) Consola del ejercicio 2
 
-![Consola del ejercicio 2](capturas/c-consola-ej2.png)
+![Consola del ejercicio 2](capturas/consEjercicio2.png)
 
-[Qué se ve, en una o dos líneas.]
+En este ejercicio se pedía comprobar el resultado del uso de las funciones nativas para cambiar el tipado de los valores en sus parámetros. Nos pedía describir que respuesta esperabamos, indicando que tipado nos devolvería la consola. Tuve un error, pues pensaba que no nos devolvería NaN, sino un TypeError.
 
 ### d) Consola del ejercicio 3
 
-![Consola del ejercicio 3](capturas/d-consola-ej3.png)
+![Consola del ejercicio 3](capturas/consEjercicio3.png)
 
-[Qué se ve, en una o dos líneas.]
+Para el ejercicio 3 el objetivo era comprobar como funcionan los operadores lógicos con diferentes tipados. Las cadenas de texto (string) tienen preferencia a concatenar al usar el operador +, sin embargo como no se puede substraer un string, el operador - da preferencia a la operación entre números y nos devuelve un number.
 
 ### e) Consola del ejercicio 4, con el error de la const
 
-![Consola del ejercicio 4 con el error de la const](capturas/e-consola-ej4.png)
+![Consola del ejercicio 4 con el error de la const](capturas/consEjercicio4.png)
 
-[Qué se ve, en una o dos líneas.]
+El ejercicio 4 pedía un alert con la ficha ("Soy David,..."), el cuál es el valor true que nos muestra la consola. También se nos pedia crear una constante y cambiar su valor para provocar un errror.
 
 ## Reflexión
 
-[De 5 a 8 líneas: ¿qué conversiones te resultaron más intuitivas y cuáles te sorprendieron? Pon ejemplos concretos de tus tablas.]
+Estos ejercicios están enfocados en el aprendizaje de funciones nativas básicas y tipado de variables. Las conversiones son bastante intuitivas, aunque para elementos como NaN, derivado de la conversión de un string que contenía carácteres alfabéticos, no es tan intuitivo, pues supuse, erroneamente, que devolvería un error.
+
+También podemos comprobar como funcionan las comparaciones entre variables con tipos distintos de datos, por lo que no solamente aprendemos a cambiar el tipo a una variable, sino qué resultados nos devuelven al aplicar comparaciones.
 
 ## Fuentes
 
-- [Título de la página](https://enlace-a-la-fuente)
-
-## Uso de IA
-
-[Si has usado IA: qué herramienta, para qué y qué hiciste después con su respuesta. Si no la has usado, borra este apartado.]
+- [Bootstrap](https://getbootstrap.com/docs/6.0)
+- [W3School](https://www.w3schools.com/bootstrap5)
