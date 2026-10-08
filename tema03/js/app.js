@@ -109,11 +109,11 @@ function ejercicio4() {
   // TODO: por ejemplo, las horas que has estudiado esta semana. Después súmale algo con +=.
 
   // La ficha con plantilla de cadena: backticks () y ${ }
-  const ficha = `Soy ${nombre}, estudio ${curso} de ${ciclo} en ${institucion} y mi afición es ${aficion}.`;
+  const ficha = `Soy ${nombre}, estudio ${curso} de ${ciclo} en ${institucion} y mi afición es el ${aficion}.`;
   // TODO: completa la ficha con todos tus datos y muéstrala con alert() y en la consola.
   alert(ficha);
 
-  const fichaConMas = "Soy " + nombre + ", estudio " + curso + " de " + ciclo + " en " + institucion + " y mi afición es " + aficion + ".";
+  const fichaConMas = "Soy " + nombre + ", estudio " + curso + " de " + ciclo + " en " + institucion + " y mi afición es el " + aficion + ".";
   console.log(fichaConMas);
   console.log(ficha === fichaConMas);
   // TODO: escribe la misma ficha concatenando con + en una constante fichaConMas y muéstrala en la consola.
