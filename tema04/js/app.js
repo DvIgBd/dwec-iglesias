@@ -71,13 +71,14 @@ function dividir() {
 
   if (Number.isNaN(n1) || Number.isNaN(n2)) {
     mostrar("Escribe los dos números antes de operar.", "danger");
-    console.warn("Dividir: el divisor o el dividendo.");
+    console.warn("Dividir: falta el divisor o el dividendo.");
   } else if (n2 === 0) {
     mostrar("No se puede dividir entre 0.", "danger");
+    console.warn("Dividir: no se puede dividir entre 0.");
   } else {
     const resultado = n1 / n2;
     mostrar(`${n1} ÷ ${n2} = ${resultado}`);
-    console.log(`Sumar: ${n1} ÷ ${n2} = ${resultado}`);  
+    console.log(`Dividir: ${n1} ÷ ${n2} = ${resultado}`);  
   }
   // TODO: como sumar(), con el operador /
   // TODO: si el número 2 es 0, muestra un error en rojo. Ojo: en JavaScript, 5 / 0 no da error, da Infinity.
@@ -107,6 +108,7 @@ function modulo() {
     console.warn("Módulo: falta algún número");
   } else if (n2 === 0) {
     mostrar("No se puede dividir entre 0.", "danger");
+    console.warn("Módulo: no se puede dividir entre 0.");
   } else {
     const resultado = n1 % n2;
     mostrar(`${n1} % ${n2} = ${resultado}`);
@@ -125,10 +127,13 @@ function cualEsMayor() {
   const n1 = leerNumero("numero1");
   const n2 = leerNumero("numero2");
 
-  if (n1 > n2) {
+  if (Number.isNaN(n1) || Number.isNaN(n2)) {
+    mostrar("Escribe los dos números antes de operar.", "danger");
+    console.warn("Par o impar: falta algún número");
+  } else if (n1 > n2) {
     mostrar(`${n1} es mayor que ${n2}.`);
     console.log(`Cual es mayor: ${n1} > ${n2} → ${n1}`);
-  } else if (n1 < n2) {
+  }  else if (n1 < n2) {
     mostrar(`${n2} es mayor que ${n1}.`);
     console.log(`Cual es mayor: ${n2} > ${n1} → ${n2}`);
   } else {
@@ -141,7 +146,13 @@ function cualEsMayor() {
 function parOImpar() {
   const n1 = leerNumero("numero1");
 
-  (n1 % 2 === 0) ? mostrar(`${n1} es un número par.`) : mostrar(`${n1} es un número impar.`);
+  if (n1 % 1 !== 0) {
+    mostrar(`${n1} es un número no es ni par ni impar.`, "danger");
+    console.warn("Par o impar: número no válido.");
+  } else {
+    (n1 % 2 === 0) ? mostrar(`${n1} es un número par.`) : mostrar(`${n1} es un número impar.`);
+  }
+  
   // TODO: solo con el número 1. Usa el operador % y el ternario ( condición ? "par" : "impar" ).
   // TODO: si el número tiene decimales, avisa de que no es ni par ni impar.
 }
@@ -154,7 +165,18 @@ function parOImpar() {
 
 function bucleFor() {
   const veces = leerNumero("numero1");
+  let contador = 0;
   limpiarSalida();
+  if (veces % 1 !== 0 || veces > MAXIMO_REPETICIONES || Number.isNaN(veces)) {
+    mostrar("Escribe los dos números antes de operar.", "danger");
+    console.warn("BucleFor: falta el número o es inválido.");
+  } else {
+    for (let i = 0; i < veces; i++) {
+      anadirLinea(`for · repetición ${i} de ${veces}`);
+      contador++;
+    }
+  }
+  anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones` : `Total: ${contador} repetición.`);
 
   // TODO: si el número falta, tiene decimales o pasa de MAXIMO_REPETICIONES, muestra un error en rojo.
   // TODO: si no, repite con un for tantas veces como diga «veces». En cada vuelta:
@@ -164,10 +186,36 @@ function bucleFor() {
 }
 
 function bucleWhile() {
+  const veces = leerNumero("numero1");
+  let contador = 1;
+  limpiarSalida();
+  if (veces % 1 !== 0 || veces > MAXIMO_REPETICIONES || Number.isNaN(veces)) {
+    mostrar("Escribe los dos números antes de operar.", "danger");
+    console.warn("BucleFor: falta el número o es inválido.");
+  } else {
+    while(contador !== veces) {
+      anadirLinea(`while · repetición ${contador} de ${veces}`);
+      contador++;
+    }
+  }
+  anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones` : `Total: ${contador} repetición.`);
   // TODO: lo mismo que bucleFor(), con un while.
 }
 
 function bucleDoWhile() {
+  const veces = leerNumero("numero1");
+  let contador = 1;
+  limpiarSalida();
+  if (veces % 1 !== 0 || veces > MAXIMO_REPETICIONES || Number.isNaN(veces)) {
+    mostrar("Escribe los dos números antes de operar.", "danger");
+    console.warn("BucleFor: falta el número o es inválido.");
+  } else {
+    do {
+      anadirLinea(`while · repetición ${contador} de ${veces}`);
+      contador++;
+    } while (contador < veces);
+  }
+  anadirLinea((contador !== 1) ? `Total: ${contador - 1} repeticiones` : `Total: ${contador - 1} repetición.`);
   // TODO: lo mismo que bucleFor(), con un do…while. Pruébalo con 0 y con un negativo: ¿qué pasa?
 }
 
