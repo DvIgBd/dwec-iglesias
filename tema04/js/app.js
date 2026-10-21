@@ -1,14 +1,6 @@
 /*
-  Tarea 4 · DWEC · David Iglesias Borland
-  Calculadora y bucles.
-
-  Cómo usar esta plantilla:
-  · Hay una función por botón. Cada una se ejecuta al pulsar su botón de index.html.
-  · sumar() está hecha: es el modelo. Escribe las demás donde pone TODO y, cuando termines, borra el TODO.
-  · Para leer las casillas y escribir el resultado usa las funciones de js/ayudas.js:
-      leerNumero("numero1"), mostrar(texto, color), anadirLinea(texto), anadirBadge(texto, color), limpiarSalida()
-  · Además de en la página, cada función deja su rastro en la consola con console.log().
-  · let y const, nunca var. Compara siempre con ===. Comillas rectas.
+  Archivo JavaScript con las funciones de la calculadora,
+  las comparaciones, las comprobaciones y los bucles.
 */
 
 // Aviso en consola de que el archivo se ha cargado bien
@@ -21,7 +13,7 @@ const MAXIMO_REPETICIONES = 20;   // para que un bucle no llene la página
 // Ejercicio 1 · Calculadora
 // ============================================================
 
-// El modelo: lee los dos números, comprueba que están y opera
+// Suma los dos números
 function sumar() {
   const n1 = leerNumero("numero1");
   const n2 = leerNumero("numero2");
@@ -132,16 +124,16 @@ function cualEsMayor() {
 
   if (Number.isNaN(n1) || Number.isNaN(n2)) {
     mostrar("Escribe los dos números antes de operar.", "danger");
-    console.warn("Par o impar: falta algún número");
+    console.warn("Cuál Es Mayor: falta algún número");
   } else if (n1 > n2) {
-    mostrar(`${n1} es mayor que ${n2}.`);
+    mostrar(`${n1} es mayor que ${n2}`);
     console.log(`Cual es mayor: ${n1} > ${n2} → ${n1}`);
   }  else if (n1 < n2) {
-    mostrar(`${n2} es mayor que ${n1}.`);
+    mostrar(`${n2} es mayor que ${n1}`);
     console.log(`Cual es mayor: ${n2} > ${n1} → ${n2}`);
   } else {
     // Si no es mayor ni menor, es que son iguales
-    mostrar(`Ambos números son iguales (${n1}, ${n2}).`);
+    mostrar(`Ambos números son iguales (${n1}, ${n2})`);
     console.log(`Cual es mayor: ${n1} === ${n2}`);
   }
 }
@@ -152,11 +144,12 @@ function parOImpar() {
 
   // Si tiene decimales (o está vacío) no puede ser par ni impar
   if (n1 % 1 !== 0) {
-    mostrar(`${n1} es un número no es ni par ni impar.`, "danger");
+    mostrar(`${n1} es un número que no es ni par ni impar.`, "danger");
     console.warn("Par o impar: número no válido.");
   } else {
     // Si el resto entre 2 es 0, es par; si no, impar
-    (n1 % 2 === 0) ? mostrar(`${n1} es un número par.`) : mostrar(`${n1} es un número impar.`);
+    (n1 % 2 === 0) ? mostrar(`${n1} es un número par`) : mostrar(`${n1} es un número impar`);
+    console.log("Par o impar: " + ((n1 % 2 === 0) ? `${n1} es un número par` : `${n1} es un número impar`));
   }
 }
 
@@ -182,7 +175,8 @@ function bucleFor() {
       contador++;
     }
     // Total final, en singular o plural según haga falta
-    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
+    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones` : `Total: ${contador} repetición`);
+    console.log("Bucle For: " + ((contador !== 1) ? `${contador} repeticiones` : `${contador} repetición`));
   }
 }
 
@@ -200,7 +194,8 @@ function bucleWhile() {
       anadirLinea(`while · repetición ${contador + 1} de ${veces}`);
       contador++;
     }
-    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
+    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones` : `Total: ${contador} repetición`);
+    console.log("Bucle While: " + ((contador !== 1) ? `${contador} repeticiones` : `${contador} repetición`));
   }
 }
 
@@ -215,10 +210,11 @@ function bucleDoWhile() {
     console.warn("BucleDoWhile: falta el número o es inválido.");
   } else {
     do {
-      anadirLinea(`while · repetición ${contador + 1} de ${veces}`);
+      anadirLinea(`do while · repetición ${contador + 1} de ${veces}`);
       contador++;
     } while (contador < veces);
-    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
+    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones` : `Total: ${contador} repetición`);
+    console.log("Bucle Do While: " + ((contador !== 1) ? `${contador} repeticiones` : `${contador} repetición`));
   }
 }
 
@@ -227,7 +223,7 @@ function bucleDoWhile() {
 // Ejercicio 4 · Bucles con badges
 // ============================================================
 
-// Pinta un badge rojo por repetición usando for
+// Pinta un badge por repetición usando for: azul si es par y verde si es impar
 function badgesFor() {
   const veces = leerNumero("numero1");
   let contador = 0;
@@ -238,14 +234,16 @@ function badgesFor() {
     console.warn("BucleFor: falta el número o es inválido.");
   } else {
     for (let i = 1; i <= veces; i++) {
-      anadirBadge(i, "danger");
+      // El ternario elige el color según si la repetición es par o impar
+      anadirBadge(i, (i % 2 === 0) ? "primary" : "success");
       contador++;
     }
-    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
+    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones` : `Total: ${contador} repetición`);
+    console.log("Bucle Badges For: " + ((contador !== 1) ? `${contador} repeticiones` : `${contador} repetición`));
   }
 }
 
-// Pinta un badge azul por repetición usando while
+// Lo mismo, pero con while
 function badgesWhile() {
   const veces = leerNumero("numero1");
   let contador = 0;
@@ -256,14 +254,15 @@ function badgesWhile() {
     console.warn("BucleWhile: falta el número o es inválido.");
   } else {
     while(contador < veces) {
-      anadirBadge(contador + 1, "primary");
+      anadirBadge(contador + 1, ((contador + 1) % 2 === 0) ? "primary" : "success");
       contador++;
     }
-    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
+    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones` : `Total: ${contador} repetición`);
+    console.log("Bucle Badges While: " + ((contador !== 1) ? `${contador} repeticiones` : `${contador} repetición`));
   }
 }
 
-// Pinta un badge verde por repetición
+// Lo mismo, pero con do...while: aunque el número sea 0, pinta al menos un badge
 function badgesDoWhile() {
   const veces = leerNumero("numero1");
   let contador = 0;
@@ -273,10 +272,11 @@ function badgesDoWhile() {
     mostrar("Escribe un número antes de operar.", "danger");
     console.warn("BucleWhile: falta el número o es inválido.");
   } else {
-    while(contador < veces) {
-      anadirBadge(contador + 1, "success");
+    do {
+      anadirBadge(contador + 1, ((contador + 1) % 2 === 0) ? "primary" : "success");
       contador++;
-    }
-    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
+    } while (contador < veces);
+    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones` : `Total: ${contador} repetición`);
+    console.log("Bucle Badges Do While: " + ((contador !== 1) ? `${contador} repeticiones` : `${contador} repetición`));
   }
 }
