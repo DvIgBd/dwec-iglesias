@@ -206,6 +206,7 @@ function bucleDoWhile() {
 // ============================================================
 
 function badgesFor() {
+  
   // TODO: como bucleFor(), pero cada vuelta añade un badge con el número de la repetición:
   //         anadirBadge(i, "primary");
   // TODO: los pares, de un color y los impares, de otro. Elige el color con el operador ternario.
