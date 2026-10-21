@@ -157,7 +157,7 @@ function bucleFor() {
   let contador = 0;
   limpiarSalida();
   if (veces % 1 !== 0 || veces > MAXIMO_REPETICIONES || Number.isNaN(veces)) {
-    mostrar("Escribe un número antes de operar.", "danger");
+    mostrar((veces > MAXIMO_REPETICIONES) ? "El número no debe superar el máximo de repeticiones (20)." : "Escribe un número válido.", "danger");
     console.warn("BucleFor: falta el número o es inválido.");
   } else {
     for (let i = 1; i <= veces; i++) {
@@ -173,7 +173,7 @@ function bucleWhile() {
   let contador = 0;
   limpiarSalida();
   if (veces % 1 !== 0 || veces > MAXIMO_REPETICIONES || Number.isNaN(veces)) {
-    mostrar("Escribe un número antes de operar.", "danger");
+    mostrar((veces > MAXIMO_REPETICIONES) ? "El número no debe superar el máximo de repeticiones (20)." : "Escribe un número válido.", "danger");
     console.warn("BucleWhile: falta el número o es inválido.");
   } else {
     while(contador < veces) {
@@ -189,7 +189,7 @@ function bucleDoWhile() {
   let contador = 0;
   limpiarSalida();
   if (veces % 1 !== 0 || veces > MAXIMO_REPETICIONES || Number.isNaN(veces)) {
-    mostrar("Escribe un número antes de operar.", "danger");
+    mostrar((veces > MAXIMO_REPETICIONES) ? "El número no debe superar el máximo de repeticiones (20)." : "Escribe un número válido.", "danger");
     console.warn("BucleDoWhile: falta el número o es inválido.");
   } else {
     do {
