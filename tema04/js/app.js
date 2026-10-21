@@ -164,7 +164,7 @@ function bucleFor() {
       anadirLinea(`for · repetición ${i} de ${veces}`);
       contador++;
     }
-     anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
+    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
   }
 }
 
@@ -206,16 +206,49 @@ function bucleDoWhile() {
 // ============================================================
 
 function badgesFor() {
-  
-  // TODO: como bucleFor(), pero cada vuelta añade un badge con el número de la repetición:
-  //         anadirBadge(i, "primary");
-  // TODO: los pares, de un color y los impares, de otro. Elige el color con el operador ternario.
+  const veces = leerNumero("numero1");
+  let contador = 0;
+  limpiarSalida();
+  if (veces % 1 !== 0 || veces > MAXIMO_REPETICIONES || Number.isNaN(veces)) {
+    mostrar("Escribe un número antes de operar.", "danger");
+    console.warn("BucleFor: falta el número o es inválido.");
+  } else {
+    for (let i = 1; i <= veces; i++) {
+      anadirBadge(i, "danger");
+      contador++;
+    }
+    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
+  }
 }
 
 function badgesWhile() {
-  // TODO: lo mismo que badgesFor(), con un while.
+  const veces = leerNumero("numero1");
+  let contador = 0;
+  limpiarSalida();
+  if (veces % 1 !== 0 || veces > MAXIMO_REPETICIONES || Number.isNaN(veces)) {
+    mostrar("Escribe un número antes de operar.", "danger");
+    console.warn("BucleWhile: falta el número o es inválido.");
+  } else {
+    while(contador < veces) {
+      anadirBadge(contador + 1, "primary");
+      contador++;
+    }
+    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
+  }
 }
 
 function badgesDoWhile() {
-  // TODO: lo mismo que badgesFor(), con un do…while.
+  const veces = leerNumero("numero1");
+  let contador = 0;
+  limpiarSalida();
+  if (veces % 1 !== 0 || veces > MAXIMO_REPETICIONES || Number.isNaN(veces)) {
+    mostrar("Escribe un número antes de operar.", "danger");
+    console.warn("BucleWhile: falta el número o es inválido.");
+  } else {
+    while(contador < veces) {
+      anadirBadge(contador + 1, "success");
+      contador++;
+    }
+    anadirLinea((contador !== 1) ? `Total: ${contador} repeticiones.` : `Total: ${contador} repetición.`);
+  }
 }
