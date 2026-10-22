@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Autor** | [Tu nombre y apellidos] |
+| **Autor** | David Iglesias Borland |
 | **Módulo** | Desarrollo Web en Entorno Cliente (DWEC) |
 | **Curso** | 2.º DAW · 2026-27 |
 
