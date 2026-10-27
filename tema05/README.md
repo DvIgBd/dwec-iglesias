@@ -1,6 +1,6 @@
 # Tarea 5 · Manipular el DOM
 
-**Autor:** [Tu nombre y apellidos] · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
+**Autor:** David Iglesias Borland · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
 
 > **Plantilla de la tarea 5.** Cómo usarla:
 >
@@ -26,17 +26,30 @@
 
 [Qué ha cambiado en cada párrafo y qué selector has usado para cada uno.]
 
+<img src="capturas/b-ej1-ej2-2.png" alt="Los párrafos después de aplicar los cambios y añadir dos párrafos" width="600">
+
+[Consola.]
+
+
 ### c) Ejercicio 3: resaltado al pasar el ratón
 
 ![Un párrafo resaltado con el ratón encima](capturas/c-ej3-resaltado.png)
 
 [Qué párrafo está resaltado y qué pasa con los párrafos que añades después.]
 
+![Un párrafo resaltado con el ratón encima](capturas/c-ej3-resaltado-2.png)
+
+[Consola.]
+
 ### d) Ejercicio 4: `<b>hola</b>` con innerHTML
 
 <img src="capturas/d-ej4-innerhtml.png" alt="El primer párrafo tras usar innerHTML" width="600">
 
-[Qué salía con «Cambiar texto» y qué sale con innerHTML.]
+[Qué salía con «Cambiar texto».]
+
+<img src="capturas/d-ej4-innerhtml-2.png" alt="El primer párrafo tras usar innerHTML" width="600">
+
+[Qué salía con innerHTML.]
 
 ### e) Ejercicio 5: la lista de tareas
 
@@ -44,15 +57,27 @@
 
 [Tres tareas, una marcada, antes de pulsar «Borrar completadas».]
 
+![La lista con tres tareas y una marcada](capturas/e-ej5-lista-2.png)
+
+[Tres tareas, una marcada, antes de pulsar «Borrar completadas».]
+
+![La lista con tres tareas y una marcada](capturas/e-ej5-lista-3.png)
+
+[Tres tareas, una marcada, antes de pulsar «Borrar completadas».]
+
 ### f) Ejercicio 6: los datos de la ventana en el móvil
 
 <img src="capturas/f-ej6-movil.png" alt="Los datos de la ventana en el modo móvil" width="300">
 
-[Qué punto de corte sale en el móvil y cuál en tu ordenador.]
+Movil.
+
+<img src="capturas/f-ej6-movil-2.png" alt="Los datos de la ventana en el modo móvil" width="600">
+
+Ordenador.
 
 ## Reflexión
 
-[De 5 a 8 líneas: ¿qué diferencia hay entre textContent e innerHTML y por qué no se debe meter en innerHTML lo que escribe el usuario? Pon como ejemplo lo que pasó con `<b>hola</b>`.]
+Es muy importante tener cuidado con el uso de innerHTML cuando se usa con el input del usuario ya que podemos sufrir crosssite injection. El uso de textContent nos evita esta situación, añadiendo el texto plano sin procesar el html.
 
 ## Fuentes
 
