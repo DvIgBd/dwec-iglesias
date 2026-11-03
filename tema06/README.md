@@ -27,6 +27,8 @@
 
 [La ficha después de cumplir años y la lista de colores después de añadir y quitar alguno. Qué método has usado para cada cosa.]
 
+Cuando eliminamos el curso con delete, al tratar de mostrarlo en la ficha muestra undefined porque la clave no existe.
+
 ### c) Ejercicio 3: el catálogo ordenado por precio
 
 ![La tabla de productos ordenada por precio](capturas/c-ej3-ordenado.png)

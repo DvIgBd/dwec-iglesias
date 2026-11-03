@@ -1,5 +1,5 @@
 /*
-  Tarea 6 · DWEC · [Tu nombre y apellidos]
+  Tarea 6 · DWEC · David Iglesias Borland
   Objetos y arrays.
 
   Cómo usar esta plantilla:
@@ -35,10 +35,38 @@ function comoTexto(lista) {
 // TODO: añádele el método presentarse(), que devuelve una frase con this.nombre, this.apellidos, this.edad y this.curso.
 //       Por ejemplo: «Soy [nombre] [apellidos], tengo [edad] años y estudio [curso].»
 const estudiante = {
-
+  Nombre: "David",
+  Apellidos: "Iglesias Borland",
+  Edad: 26,
+  Curso: "2º DAW",
+  presentarse: function() {
+    return "Soy " + this.Nombre + " " + this.Apellidos + ", tengo " + this.Edad + " años y estudio " + this.Curso + ".";
+  }
 };
 
 function verFicha() {
+  const salida1 = document.getElementById("salida1");
+  const lista = document.createElement("ul");
+  const claves = Object.keys(estudiante).slice(0, -1);
+  const mensaje = document.createElement("p");
+
+
+  salida1.textContent = "";
+  lista.classList.add("list-group");
+  mensaje.classList.add("m-3");
+  mensaje.textContent = estudiante.presentarse();
+  
+  claves.forEach(function(clave) {
+    const elementoLista = document.createElement("li");
+    elementoLista.classList.add("list-group-item");
+    elementoLista.textContent = clave + ": " + estudiante[clave];
+    lista.appendChild(elementoLista);
+  })
+
+  salida1.appendChild(lista);
+  salida1.appendChild(mensaje);
+
+  console.log(estudiante);
   // TODO: vacía #salida1 (textContent = "").
   // TODO: crea un <ul class="list-group"> con un <li class="list-group-item"> por propiedad: «nombre: ...», «edad: ...».
   //       Pista: guarda las claves en un array, ["nombre", "apellidos", "edad", "curso"], recórrelo con forEach
@@ -48,10 +76,18 @@ function verFicha() {
 }
 
 function cumplirAnios() {
-  // TODO: suma 1 a la edad del estudiante y vuelve a pintar la ficha (llama a verFicha()).
+  if (estudiante["Edad"] < 100) {
+    estudiante["Edad"] += 1;
+  } else {
+    estudiante["presentarse"] = function() {return "Dudo mucho que esta persona sea un alumno."};
+    verFicha();
+  }
+  verFicha();
 }
 
 function quitarCurso() {
+  delete estudiante["Curso"];
+  verFicha();
   // TODO: borra la propiedad curso con delete y vuelve a pintar la ficha.
   //       Fíjate en lo que sale ahora en el curso y explícalo en el README.
 }
@@ -101,11 +137,25 @@ function anadirColor() {
 }
 
 function quitarUltimo() {
+  if (colores.length == 0) {
+    avisar2("No hay colores que quitar dentro de la lista.");
+  } else {
+    const color = colores.pop();
+    mostrarColores();
+    console.log("Color eliminado: " + color);
+  }
   // TODO: si la lista está vacía, avisa con avisar2() y no hagas nada más.
   // TODO: si no, saca el último con pop(), vuelve a pintar la lista y di en la consola qué color ha salido.
 }
 
 function quitarPrimero() {
+  if (colores.length == 0) {
+    avisar2("No hay colores que quitar dentro de la lista.");
+  } else {
+    const color = colores.shift();
+    mostrarColores();
+    console.log("Color eliminado: " + color);
+  }
   // TODO: lo mismo que quitarUltimo(), pero sacando el primero con shift().
 }
 
@@ -150,10 +200,24 @@ function pintarProductos(lista) {
 }
 
 function mostrarProductos() {
+  const mensaje = document.getElementById("mensaje3");
+
+  mensaje.textContent = "Hay " + productos.length + " productos disponibles.";
+  pintarProductos(productos);
   // TODO: pinta todos los productos con pintarProductos() y escribe en #mensaje3 cuántos hay.
 }
 
 function ordenarPorPrecio() {
+  const lista = [...productos];
+  const mensaje = document.getElementById("mensaje3");
+
+  lista.sort(function(a, b) {
+    return a.precio - b.precio;
+  });
+
+  pintarProductos(lista);
+  mensaje.textContent = "Productos ordenados de más barato a más caro.";
+
   // TODO: haz una copia del array con [...productos] y ordénala con sort() de más barato a más caro.
   //       sort necesita una función de comparación: function (a, b) { return ... }.
   //       ¿Por qué una copia? Explícalo en el README.
@@ -161,10 +225,35 @@ function ordenarPorPrecio() {
 }
 
 function filtrarCaros() {
+  const lista = [...productos];
+  const mensaje = document.getElementById("mensaje3");
+  const productosCincuenta = lista.filter(function(a) {
+    return a.precio > 50;
+  });
+  
+  pintarProductos(productosCincuenta);
+  mensaje.textContent = "Hay " + productosCincuenta.length + " productos que cuestan más de 50€.";
   // TODO: con filter(), los productos de más de 50 €. Píntalos y escribe en #mensaje3 cuántos son.
 }
 
 function buscarProducto() {
+  const producto = document.getElementById("buscarProducto");
+  const resultadoProd  = producto.value.trim().toLowerCase();
+  const mensaje = document.getElementById("mensaje3");
+
+  if (resultadoProd === "") {
+    mensaje.textContent = "No has buscado ningún producto.";
+    pintarProductos([]);
+  } else {
+    const resultadoBusqueda = productos.find(prod=> prod.nombre.toLowerCase().includes(resultadoProd));
+    if (resultadoBusqueda === undefined) {
+      mensaje.textContent = "No existe el producto que has buscado.";
+      pintarProductos([]);
+    } else {
+      mensaje.textContent = "Se ha encontrado " + resultadoBusqueda.nombre.toLowerCase() + ".";
+      pintarProductos([resultadoBusqueda]);
+    }
+  }
   // TODO: lee #buscarProducto (value, trim y toLowerCase). Si está vacío, avisa en #mensaje3.
   // TODO: con find(), el primer producto cuyo nombre en minúsculas contenga ese texto (includes).
   // TODO: find devuelve undefined si no encuentra nada: en ese caso, dilo en #mensaje3 y vacía la tabla.
@@ -180,7 +269,15 @@ mostrarProductos();   // la tabla completa nada más cargar
 
 const alumno = {
   nombre: "[Tu nombre]",
-  notas: []
+  notas: [],
+  anadirNota: function(nota) {
+    if (Number.isNaN(Number(nota)) || nota < 0 || nota > 10) {
+      return false;
+    } else {
+      this.notas.push(nota);
+      return true;
+    }
+  }
   // TODO: método anadirNota(nota): si la nota no es un número (Number.isNaN) o no está entre 0 y 10, devuelve false;
   //       si es válida, la añade a this.notas con push y devuelve true.
   // TODO: método media(): si no hay notas devuelve 0; si hay, la suma (con reduce) dividida entre el número de notas.
@@ -188,12 +285,45 @@ const alumno = {
 };
 
 function mostrarNotas() {
+  const notas = document.getElementById("notas");
+  const media = document.getElementById("media");
+  notas.innerHTML = "";
+  
+  for (const nota of alumno.notas) {
+    const txt = nota >= 5 ? "text-bg-success" : "text-bg-danger";
+    const span = document.createElement("span");
+
+    span.classList.add("badge", txt, "mx-1");
+    span.textContent = nota; 
+
+    notas.appendChild(span);
+  }
+
+  const longitudNotas = alumno.notas.length;
+
+  notas.textContent !== "" ? media.textContent = "Media de " + longitudNotas + " notas: " + (alumno.notas.reduce((total, n) => total + n, 0) / longitudNotas).toFixed(2) : media.textContent = "Todavía no hay notas.";
   // TODO: vacía #notas y pon un badge (<span class="badge">) por nota: verde (text-bg-success) si es de 5 o más,
   //       rojo (text-bg-danger) si no.
   // TODO: en #media, «Media de N notas: X» con dos decimales (toFixed(2)), o «Todavía no hay notas.».
 }
 
 function anadirNota() {
+  const nota = document.getElementById("nota");
+  const error = document.getElementById("error4");
+
+  if (nota.value === "") {
+    error.textContent = "Escribe una nota.";
+    error.classList.remove("d-none");
+  } else {
+    if (!alumno.anadirNota(Number(nota.value))) {
+      error.textContent = "La nota debe ser entre 0 y 10.";
+      error.classList.remove("d-none");
+    } else {
+      nota.value = "";
+      error.classList.add("d-none");
+      mostrarNotas();
+    }
+  }
   // TODO: si #nota está vacía, muestra un error en #error4 (quítale "d-none").
   //       Ojo: Number("") vale 0, así que esta comprobación va antes de convertir.
   // TODO: convierte el valor con Number() y llama a alumno.anadirNota(). Si devuelve false, muestra el error.
@@ -201,6 +331,8 @@ function anadirNota() {
 }
 
 function borrarNotas() {
+  alumno.notas = [];
+  mostrarNotas();
   // TODO: deja alumno.notas vacío y vuelve a pintar.
 }
 
@@ -214,6 +346,9 @@ mostrarNotas();
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 function verDobles() {
+  const salida = document.getElementById("salida5");
+
+  const numerosDoble = numeros.map();
   // TODO: con map(), un array nuevo con el doble de cada número.
   // TODO: escribe en #salida5 el resultado y, debajo, numeros (para que se vea que no ha cambiado).
 }
