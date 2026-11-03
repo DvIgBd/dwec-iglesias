@@ -345,23 +345,71 @@ mostrarNotas();
 
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-function verDobles() {
+function verDobles(apto = true) {
   const salida = document.getElementById("salida5");
+  const p = document.createElement("p");
+  const p2 = document.createElement("p");
+  const numerosDoble = numeros.map(n => n * 2);
 
-  const numerosDoble = numeros.map();
+  if (apto) {
+    salida.innerHTML = "";
+  }
+
+  p.textContent = "Lista editada: " + comoTexto(numerosDoble);
+  p2.textContent = "Lista original: " + comoTexto(numeros);
+
+  salida.appendChild(p);
+  salida.appendChild(p2);
   // TODO: con map(), un array nuevo con el doble de cada número.
   // TODO: escribe en #salida5 el resultado y, debajo, numeros (para que se vea que no ha cambiado).
 }
 
-function verPares() {
+function verPares(apto = true) {
+  const salida = document.getElementById("salida5");
+  const p = document.createElement("p");
+  const p2 = document.createElement("p");
+  const numerosPares = numeros.filter(n => n % 2 == 0);
+
+  if (apto) {
+    salida.innerHTML = "";
+  }
+
+  p.textContent = "Lista editada: " + comoTexto(numerosPares);
+  p2.textContent = "Lista original: " + comoTexto(numeros);
+
+  salida.appendChild(p);
+  salida.appendChild(p2);
   // TODO: con filter(), los números pares (n % 2 === 0). Escríbelos en #salida5 como en verDobles().
 }
 
-function verSuma() {
+function verSuma(apto = true) {
+  const salida = document.getElementById("salida5");
+  const p = document.createElement("p");
+  const p2 = document.createElement("p");
+  const sumaTotal = numeros.reduce((total, n) => total + n, 0);
+
+  if (apto) {
+    salida.innerHTML = "";
+  }
+
+  p.textContent = "Suma total: " + sumaTotal;
+  p2.textContent = "Lista original: " + comoTexto(numeros);
+
+  salida.appendChild(p);
+  salida.appendChild(p2);
   // TODO: con reduce(), la suma de todos los números (empieza en 0). Escríbela en #salida5.
 }
 
 function verCadena() {
+  const salida = document.getElementById("salida5");
+
+  for(let i = 0; i < 3; i++) {
+    
+  }
+
+  verDobles();
+  verPares(false);
+  verSuma(false);
   // TODO: los tres seguidos: los pares, después sus dobles y al final la suma de esos dobles.
   //       Escribe en #salida5 una línea por paso.
 }
