@@ -366,7 +366,7 @@ function verPares() {
   const salida = document.getElementById("salida5");
   const p = document.createElement("p");
   const p2 = document.createElement("p");
-  const numerosPares = numeros.filter(n => n % 2 == 0);
+  const numerosPares = numeros.filter(n => n % 2 === 0);
 
   salida.innerHTML = "";
 
@@ -396,7 +396,7 @@ function verSuma() {
 
 function verCadena() {
   const salida = document.getElementById("salida5");
-  const pares = numeros.filter(n => n % 2 == 0);
+  const pares = numeros.filter(n => n % 2 === 0);
   const dobles = pares.map(n => n * 2);
   const sumaTotal = dobles.reduce((total, n) => total + n, 0);
 
@@ -426,24 +426,111 @@ const ciudadesOriginal = ["Granada", "Sevilla", "Málaga", "Córdoba", "Jaén", 
 let ciudades = [...ciudadesOriginal];   // una copia: splice cambia ciudades y así podemos restaurarla
 
 function mostrarCiudades() {
+  const ciu = document.getElementById("ciudades");
+
+  ciu.innerHTML = "";
+
+  ciudades.forEach(function (ciudad, posicion) {
+    const p = document.createElement("p");
+    const span = document.createElement("span");
+    
+    span.textContent = `${posicion}`;
+    p.textContent = ` · ${ciudad}`;
+
+    span.classList.add("badge", "bg-secondary");
+    p.prepend(span);
+    ciu.appendChild(p);
+  });
   // TODO: vacía #ciudades y pon un badge por ciudad con su posición: «0 · Granada», «1 · Sevilla»...
   //       Pista: forEach le pasa a tu función dos datos: function (ciudad, posicion) { ... }.
 }
 
 function verSlice() {
+  const salida = document.getElementById("salida6");
+  const p = document.createElement("p");
+  const p2 = document.createElement("p");
+
+  salida.innerHTML = "";
+
+  p.textContent = comoTexto(ciudades.slice(2, 5));
+  p2.textContent = "Ciudades disponibles: " + comoTexto(ciudades);
+
+  p2.classList.add("mb-0");
+
+  salida.appendChild(p);
+  salida.appendChild(p2);
+
+  mostrarCiudades();
   // TODO: guarda ciudades.slice(2, 5) y escribe en #salida6 qué devuelve y cuántas ciudades siguen en el array.
 }
 
 function hacerSplice() {
+  const salida = document.getElementById("salida6");
+  const p = document.createElement("p");
+  const p2 = document.createElement("p");
+
+  salida.innerHTML = "";
+
+  if (ciudades.length < 3) {
+    p.textContent = "Debes restaurar la lista debido a ciudades insuficientes.";
+    p.classList.add("text-danger", "mb-0");
+
+    salida.appendChild(p);
+  } else {
+    p.textContent = "Ciudades que han sido eliminadas de la lista: " + comoTexto(ciudades.splice(2, 2));
+    p2.textContent = "Ciudades restantes: " + comoTexto(ciudades);
+
+    p2.classList.add("mb-0");
+
+    salida.appendChild(p);
+    salida.appendChild(p2);
+  }
+
+  mostrarCiudades();
   // TODO: si quedan menos de 3 ciudades, avisa en #salida6 de que hay que restaurar y no hagas nada más.
   // TODO: si no, ciudades.splice(2, 2): escribe en #salida6 qué devuelve y cuántas quedan, y vuelve a pintar.
 }
 
 function restaurarCiudades() {
+  const buscar = document.getElementById("buscarCiudad");
+  const salida = document.getElementById("salida6");
+  
+  buscar.value = "";
+  salida.textContent = "Pulsa un botón para ver el resultado.";
+
+  ciudades = [...ciudadesOriginal];
+
+  mostrarCiudades();
   // TODO: vuelve a copiar ciudadesOriginal en ciudades y pinta.
 }
 
 function buscarCiudad() {
+  const buscar = document.getElementById("buscarCiudad");
+  const salida = document.getElementById("salida6");
+  const p = document.createElement("p");
+  const p2 = document.createElement("p");
+  const resultadoBusqueda = ciudades.includes(buscar.value.trim());
+  const indice = ciudades.indexOf(buscar.value.trim());
+
+  salida.innerHTML = "";
+
+  if (buscar.value.trim() === "") {
+    p.textContent = "El campo de búsqueda está vacio.";
+    p.classList.add("text-danger", "mb-0");
+    salida.appendChild(p);
+  } else if (!resultadoBusqueda) {
+    p.textContent = "La ciudad que has buscado no se encuentra en la lista.";
+    p.classList.add("text-danger", "mb-0");
+    salida.appendChild(p);
+  }  else {
+    p.textContent = "La función includes() devuelve " + resultadoBusqueda + ".";
+    p2.textContent = "La función indexOf() devuelve " + indice + ".";
+
+    p2.classList.add("mb-0");
+
+    salida.appendChild(p);
+    salida.appendChild(p2);
+  }
   // TODO: lee #buscarCiudad (value y trim). Si está vacío, avisa.
   // TODO: escribe en #salida6 lo que dan includes() e indexOf() con ese nombre. Si no está, indexOf da -1.
 }
