@@ -345,15 +345,13 @@ mostrarNotas();
 
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-function verDobles(apto = true) {
+function verDobles() {
   const salida = document.getElementById("salida5");
   const p = document.createElement("p");
   const p2 = document.createElement("p");
   const numerosDoble = numeros.map(n => n * 2);
 
-  if (apto) {
-    salida.innerHTML = "";
-  }
+  salida.innerHTML = "";
 
   p.textContent = "Lista editada: " + comoTexto(numerosDoble);
   p2.textContent = "Lista original: " + comoTexto(numeros);
@@ -364,15 +362,13 @@ function verDobles(apto = true) {
   // TODO: escribe en #salida5 el resultado y, debajo, numeros (para que se vea que no ha cambiado).
 }
 
-function verPares(apto = true) {
+function verPares() {
   const salida = document.getElementById("salida5");
   const p = document.createElement("p");
   const p2 = document.createElement("p");
   const numerosPares = numeros.filter(n => n % 2 == 0);
 
-  if (apto) {
-    salida.innerHTML = "";
-  }
+  salida.innerHTML = "";
 
   p.textContent = "Lista editada: " + comoTexto(numerosPares);
   p2.textContent = "Lista original: " + comoTexto(numeros);
@@ -382,15 +378,13 @@ function verPares(apto = true) {
   // TODO: con filter(), los números pares (n % 2 === 0). Escríbelos en #salida5 como en verDobles().
 }
 
-function verSuma(apto = true) {
+function verSuma() {
   const salida = document.getElementById("salida5");
   const p = document.createElement("p");
   const p2 = document.createElement("p");
   const sumaTotal = numeros.reduce((total, n) => total + n, 0);
 
-  if (apto) {
-    salida.innerHTML = "";
-  }
+  salida.innerHTML = "";
 
   p.textContent = "Suma total: " + sumaTotal;
   p2.textContent = "Lista original: " + comoTexto(numeros);
@@ -402,14 +396,23 @@ function verSuma(apto = true) {
 
 function verCadena() {
   const salida = document.getElementById("salida5");
+  const pares = numeros.filter(n => n % 2 == 0);
+  const dobles = pares.map(n => n * 2);
+  const sumaTotal = dobles.reduce((total, n) => total + n, 0);
 
-  for(let i = 0; i < 3; i++) {
-    
+  salida.innerHTML = "";
+  
+  const diccionarioFunciones = {
+    "Pares": comoTexto(pares),
+    "Dobles de los pares": comoTexto(dobles),
+    "Suma Total": sumaTotal
   }
 
-  verDobles();
-  verPares(false);
-  verSuma(false);
+  for (const [clave, funcion] of Object.entries(diccionarioFunciones)) {
+    const p = document.createElement("p");
+    p.textContent = `${clave}: ${funcion}`;
+    salida.appendChild(p);
+  }
   // TODO: los tres seguidos: los pares, después sus dobles y al final la suma de esos dobles.
   //       Escribe en #salida5 una línea por paso.
 }
