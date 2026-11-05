@@ -1,39 +1,15 @@
-/*
-  Tarea 6 · DWEC · David Iglesias Borland
-  Objetos y arrays.
-
-  Cómo usar esta plantilla:
-  · Hay una función por botón. Escribe tu código donde pone TODO y, cuando termines, borra el TODO.
-  · Ya tienes hechas, como modelo, comoTexto(), pintarProductos() y el ejercicio 2 casi entero:
-    léelas antes de empezar, porque el resto se hace igual.
-  · Los resultados se pintan en la página como en el tema 5: createElement, textContent, classList y append.
-    Antes de volver a pintar una lista, vacíala con textContent = "".
-  · Las funciones se escriben con function, también las que pasas a forEach, sort, map, filter o reduce.
-    Las funciones flecha las veremos en el tema 7: en esta tarea, no las uses.
-  · Cada función deja también su rastro en la consola con console.log().
-  · let y const, nunca var. Compara siempre con ===. Comillas rectas.
-*/
+// Tarea 6 · DWEC · David Iglesias Borland · Objetos y arrays
 
 console.log("app.js cargado");
 
-
-// ============================================================
-// Ayuda: un array como texto, por ejemplo [1, 2, 3]
-// (ya está hecha: úsala cuando quieras enseñar un array)
-// ============================================================
-
+// Devuelve un array como texto: [1, 2, 3]
 function comoTexto(lista) {
   return "[" + lista.join(", ") + "]";
 }
 
 
-// ============================================================
 // Ejercicio 1 · Ficha de estudiante
-// ============================================================
 
-// TODO: completa el objeto literal con tus datos: nombre, apellidos, edad y curso.
-// TODO: añádele el método presentarse(), que devuelve una frase con this.nombre, this.apellidos, this.edad y this.curso.
-//       Por ejemplo: «Soy [nombre] [apellidos], tengo [edad] años y estudio [curso].»
 const estudiante = {
   Nombre: "David",
   Apellidos: "Iglesias Borland",
@@ -44,10 +20,18 @@ const estudiante = {
   }
 };
 
+// Pinta la lista de propiedades y la frase de presentación
 function verFicha() {
   const salida1 = document.getElementById("salida1");
   const lista = document.createElement("ul");
-  const claves = Object.keys(estudiante).slice(0, -1);
+  /* 
+    Idea original:
+      const claves = Object.keys(estudiante).slice(0, -1);
+
+      Así eliminaba la función para que no se mostrara
+      pero no se mostraba curso si hacemos el delete estudiante["Curso"].
+  */
+  const claves = ["Nombre", "Apellidos", "Edad", "Curso"];
   const mensaje = document.createElement("p");
 
 
@@ -61,48 +45,45 @@ function verFicha() {
     elementoLista.classList.add("list-group-item");
     elementoLista.textContent = clave + ": " + estudiante[clave];
     lista.appendChild(elementoLista);
-  })
+  });
 
   salida1.appendChild(lista);
   salida1.appendChild(mensaje);
 
   console.log(estudiante);
-  // TODO: vacía #salida1 (textContent = "").
-  // TODO: crea un <ul class="list-group"> con un <li class="list-group-item"> por propiedad: «nombre: ...», «edad: ...».
-  //       Pista: guarda las claves en un array, ["nombre", "apellidos", "edad", "curso"], recórrelo con forEach
-  //       y lee cada valor con corchetes: estudiante[clave].
-  // TODO: debajo, un <p> con la frase de estudiante.presentarse().
-  // TODO: console.log() del objeto entero.
 }
 
+// Suma un año a la edad y vuelve a pintar
 function cumplirAnios() {
   if (estudiante["Edad"] < 100) {
     estudiante["Edad"] += 1;
   } else {
     estudiante["presentarse"] = function() {return "Dudo mucho que esta persona sea un alumno."};
-    verFicha();
   }
+  
+  console.log("El estudiante ha cumplido " + estudiante["Edad"] + " años.");
+
   verFicha();
 }
 
+// Borra el curso con delete y vuelve a pintar
 function quitarCurso() {
   delete estudiante["Curso"];
+
+  console.log("Curso: " + estudiante["Curso"]);
+
   verFicha();
-  // TODO: borra la propiedad curso con delete y vuelve a pintar la ficha.
-  //       Fíjate en lo que sale ahora en el curso y explícalo en el README.
 }
 
 
-// ============================================================
 // Ejercicio 2 · Colores
-// mostrarColores() y anadirColor() ya están hechas: son el modelo
-// ============================================================
 
 const colores = ["rojo", "verde", "azul"];
 
+// Pinta la lista de colores y el contador
 function mostrarColores() {
   const lista = document.querySelector("#listaColores");
-  lista.textContent = "";   // vaciamos la lista antes de volver a pintarla
+  lista.textContent = "";
 
   colores.forEach(function (color) {
     const li = document.createElement("li");
@@ -112,14 +93,18 @@ function mostrarColores() {
   });
 
   document.querySelector("#totalColores").textContent = colores.length;
+
+  console.log("Colores mostrados.");
 }
 
+// Muestra un aviso en #aviso2
 function avisar2(mensaje) {
   const aviso = document.querySelector("#aviso2");
   aviso.textContent = mensaje;
   aviso.classList.remove("d-none");
 }
 
+// Añade el color escrito al final
 function anadirColor() {
   const casilla = document.querySelector("#color");
   const color = casilla.value.trim();
@@ -129,44 +114,43 @@ function anadirColor() {
     return;
   }
 
-  colores.push(color);   // push añade al final
+  colores.push(color);
   casilla.value = "";
+
   document.querySelector("#aviso2").classList.add("d-none");
+
   mostrarColores();
+
   console.log("Ejercicio 2: push →", comoTexto(colores));
 }
 
+// Quita el último color con pop
 function quitarUltimo() {
-  if (colores.length == 0) {
+  if (colores.length === 0) {
     avisar2("No hay colores que quitar dentro de la lista.");
   } else {
     const color = colores.pop();
     mostrarColores();
     console.log("Color eliminado: " + color);
   }
-  // TODO: si la lista está vacía, avisa con avisar2() y no hagas nada más.
-  // TODO: si no, saca el último con pop(), vuelve a pintar la lista y di en la consola qué color ha salido.
 }
 
+// Quita el primer color con shift
 function quitarPrimero() {
-  if (colores.length == 0) {
+  if (colores.length === 0) {
     avisar2("No hay colores que quitar dentro de la lista.");
   } else {
     const color = colores.shift();
     mostrarColores();
     console.log("Color eliminado: " + color);
   }
-  // TODO: lo mismo que quitarUltimo(), pero sacando el primero con shift().
 }
 
-mostrarColores();   // pinta los tres colores de partida nada más cargar
+mostrarColores();
 
 
-// ============================================================
 // Ejercicio 3 · Catálogo de productos
-// ============================================================
 
-// Puedes cambiar los productos por otros, pero deja al menos seis, con estas tres propiedades
 const productos = [
   { nombre: "Teclado mecánico", precio: 79.9, categoria: "Periféricos" },
   { nombre: "Ratón inalámbrico", precio: 24.5, categoria: "Periféricos" },
@@ -176,7 +160,7 @@ const productos = [
   { nombre: "Auriculares con micro", precio: 59, categoria: "Audio" }
 ];
 
-// Ya está hecha: pinta en la tabla la lista de productos que le pases
+// Pinta en la tabla la lista de productos que recibe
 function pintarProductos(lista) {
   const cuerpo = document.querySelector("#tablaProductos");
   cuerpo.textContent = "";
@@ -199,14 +183,17 @@ function pintarProductos(lista) {
   });
 }
 
+// Pinta todos los productos
 function mostrarProductos() {
   const mensaje = document.getElementById("mensaje3");
 
   mensaje.textContent = "Hay " + productos.length + " productos disponibles.";
   pintarProductos(productos);
-  // TODO: pinta todos los productos con pintarProductos() y escribe en #mensaje3 cuántos hay.
+
+  console.log("Productos mostrados: " + productos.length);
 }
 
+// Ordena una copia de más barato a más caro
 function ordenarPorPrecio() {
   const lista = [...productos];
   const mensaje = document.getElementById("mensaje3");
@@ -218,12 +205,10 @@ function ordenarPorPrecio() {
   pintarProductos(lista);
   mensaje.textContent = "Productos ordenados de más barato a más caro.";
 
-  // TODO: haz una copia del array con [...productos] y ordénala con sort() de más barato a más caro.
-  //       sort necesita una función de comparación: function (a, b) { return ... }.
-  //       ¿Por qué una copia? Explícalo en el README.
-  // TODO: pinta la copia y escribe en #mensaje3 cómo están ordenados.
+  console.log("Productos ordenados por precio.");
 }
 
+// Muestra los productos de más de 50 €
 function filtrarCaros() {
   const lista = [...productos];
   const mensaje = document.getElementById("mensaje3");
@@ -233,9 +218,11 @@ function filtrarCaros() {
   
   pintarProductos(productosCincuenta);
   mensaje.textContent = "Hay " + productosCincuenta.length + " productos que cuestan más de 50€.";
-  // TODO: con filter(), los productos de más de 50 €. Píntalos y escribe en #mensaje3 cuántos son.
+
+  console.log("Productos de más de 50€: " + productosCincuenta.length);
 }
 
+// Busca el primer producto cuyo nombre contiene el texto escrito
 function buscarProducto() {
   const producto = document.getElementById("buscarProducto");
   const resultadoProd  = producto.value.trim().toLowerCase();
@@ -245,7 +232,9 @@ function buscarProducto() {
     mensaje.textContent = "No has buscado ningún producto.";
     pintarProductos([]);
   } else {
-    const resultadoBusqueda = productos.find(prod=> prod.nombre.toLowerCase().includes(resultadoProd));
+    const resultadoBusqueda = productos.find(function (prod) {
+      return prod.nombre.toLowerCase().includes(resultadoProd)
+    });
     if (resultadoBusqueda === undefined) {
       mensaje.textContent = "No existe el producto que has buscado.";
       pintarProductos([]);
@@ -254,22 +243,19 @@ function buscarProducto() {
       pintarProductos([resultadoBusqueda]);
     }
   }
-  // TODO: lee #buscarProducto (value, trim y toLowerCase). Si está vacío, avisa en #mensaje3.
-  // TODO: con find(), el primer producto cuyo nombre en minúsculas contenga ese texto (includes).
-  // TODO: find devuelve undefined si no encuentra nada: en ese caso, dilo en #mensaje3 y vacía la tabla.
-  //       Si lo encuentra, píntalo solo a él: pintarProductos([encontrado]).
+
+  console.log("Producto buscado: " + resultadoProd);
 }
 
-mostrarProductos();   // la tabla completa nada más cargar
+mostrarProductos();
 
 
-// ============================================================
 // Ejercicio 4 · Notas
-// ============================================================
 
 const alumno = {
-  nombre: "[Tu nombre]",
+  nombre: "David",
   notas: [],
+  // Guarda la nota si es un número entre 0 y 10
   anadirNota: function(nota) {
     if (Number.isNaN(Number(nota)) || nota < 0 || nota > 10) {
       return false;
@@ -277,17 +263,30 @@ const alumno = {
       this.notas.push(nota);
       return true;
     }
+  },
+  // Devuelve la media de las notas, o 0 si no hay
+  media: function() {
+    const longitudNotas = this.notas.length;
+
+    if (longitudNotas === 0) {
+      return 0;
+    }
+
+    const notaMedia = (this.notas.reduce(function (total, n) {return total + n}, 0) / longitudNotas).toFixed(2);
+
+    return notaMedia;
   }
-  // TODO: método anadirNota(nota): si la nota no es un número (Number.isNaN) o no está entre 0 y 10, devuelve false;
-  //       si es válida, la añade a this.notas con push y devuelve true.
-  // TODO: método media(): si no hay notas devuelve 0; si hay, la suma (con reduce) dividida entre el número de notas.
-  //       Recuerda la coma entre una propiedad y la siguiente.
 };
 
+// Pinta las notas como badges y la media
 function mostrarNotas() {
+  
   const notas = document.getElementById("notas");
   const media = document.getElementById("media");
-  notas.innerHTML = "";
+  const notaMedia = alumno.media();
+  const longitudNotas = alumno.notas.length;
+
+  notas.textContent = "";
   
   for (const nota of alumno.notas) {
     const txt = nota >= 5 ? "text-bg-success" : "text-bg-danger";
@@ -299,14 +298,12 @@ function mostrarNotas() {
     notas.appendChild(span);
   }
 
-  const longitudNotas = alumno.notas.length;
+  longitudNotas !== 0 ? media.textContent = "Media de " + longitudNotas + " notas: " + notaMedia : media.textContent = "Todavía no hay notas.";
 
-  notas.textContent !== "" ? media.textContent = "Media de " + longitudNotas + " notas: " + (alumno.notas.reduce((total, n) => total + n, 0) / longitudNotas).toFixed(2) : media.textContent = "Todavía no hay notas.";
-  // TODO: vacía #notas y pon un badge (<span class="badge">) por nota: verde (text-bg-success) si es de 5 o más,
-  //       rojo (text-bg-danger) si no.
-  // TODO: en #media, «Media de N notas: X» con dos decimales (toFixed(2)), o «Todavía no hay notas.».
+  console.log("Notas mostradas: " + comoTexto(alumno.notas));
 }
 
+// Lee la nota, la valida y la añade
 function anadirNota() {
   const nota = document.getElementById("nota");
   const error = document.getElementById("error4");
@@ -324,83 +321,87 @@ function anadirNota() {
       mostrarNotas();
     }
   }
-  // TODO: si #nota está vacía, muestra un error en #error4 (quítale "d-none").
-  //       Ojo: Number("") vale 0, así que esta comprobación va antes de convertir.
-  // TODO: convierte el valor con Number() y llama a alumno.anadirNota(). Si devuelve false, muestra el error.
-  // TODO: si ha ido bien, oculta el error, vacía la casilla y llama a mostrarNotas().
+
+  console.log("Añadir nota: " + comoTexto(alumno.notas));
 }
 
+// Deja la lista de notas vacía
 function borrarNotas() {
   alumno.notas = [];
   mostrarNotas();
-  // TODO: deja alumno.notas vacío y vuelve a pintar.
+
+  console.log("Notas borradas.");
 }
 
 mostrarNotas();
 
 
-// ============================================================
 // Ejercicio 5 · map, filter y reduce
-// ============================================================
 
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+// Dobles con map
 function verDobles() {
   const salida = document.getElementById("salida5");
   const p = document.createElement("p");
   const p2 = document.createElement("p");
-  const numerosDoble = numeros.map(n => n * 2);
+  const numerosDoble = numeros.map(function (n) { return n * 2});
 
-  salida.innerHTML = "";
+  salida.textContent = "";
 
   p.textContent = "Lista editada: " + comoTexto(numerosDoble);
   p2.textContent = "Lista original: " + comoTexto(numeros);
 
   salida.appendChild(p);
   salida.appendChild(p2);
-  // TODO: con map(), un array nuevo con el doble de cada número.
-  // TODO: escribe en #salida5 el resultado y, debajo, numeros (para que se vea que no ha cambiado).
+
+  console.log("Ver dobles: " + comoTexto(numerosDoble));
 }
 
+// Pares con filter
 function verPares() {
   const salida = document.getElementById("salida5");
   const p = document.createElement("p");
   const p2 = document.createElement("p");
-  const numerosPares = numeros.filter(n => n % 2 === 0);
+  const numerosPares = numeros.filter(function (n) {return n % 2 === 0});
 
-  salida.innerHTML = "";
+  salida.textContent = "";
 
   p.textContent = "Lista editada: " + comoTexto(numerosPares);
   p2.textContent = "Lista original: " + comoTexto(numeros);
 
   salida.appendChild(p);
   salida.appendChild(p2);
-  // TODO: con filter(), los números pares (n % 2 === 0). Escríbelos en #salida5 como en verDobles().
+
+  console.log("Ver pares: " + comoTexto(numerosPares));
 }
 
+// Suma con reduce
 function verSuma() {
   const salida = document.getElementById("salida5");
   const p = document.createElement("p");
   const p2 = document.createElement("p");
-  const sumaTotal = numeros.reduce((total, n) => total + n, 0);
+  const sumaTotal = numeros.reduce(function (total, n) {return total + n}, 0);
 
-  salida.innerHTML = "";
+  salida.textContent = "";
 
   p.textContent = "Suma total: " + sumaTotal;
   p2.textContent = "Lista original: " + comoTexto(numeros);
 
   salida.appendChild(p);
   salida.appendChild(p2);
-  // TODO: con reduce(), la suma de todos los números (empieza en 0). Escríbela en #salida5.
+
+  console.log("Ver suma: " + sumaTotal);
 }
 
+// Pares, sus dobles y la suma de los dobles
 function verCadena() {
   const salida = document.getElementById("salida5");
-  const pares = numeros.filter(n => n % 2 === 0);
-  const dobles = pares.map(n => n * 2);
-  const sumaTotal = dobles.reduce((total, n) => total + n, 0);
+  const pares = numeros.filter(function (n) {return n % 2 === 0});
+  const dobles = pares.map(function (n) {return n * 2});
+  const sumaTotal = dobles.reduce(function (total, n) {return total + n}, 0);
 
-  salida.innerHTML = "";
+  salida.textContent = "";
   
   const diccionarioFunciones = {
     "Pares": comoTexto(pares),
@@ -410,50 +411,47 @@ function verCadena() {
 
   for (const [clave, funcion] of Object.entries(diccionarioFunciones)) {
     const p = document.createElement("p");
-    p.textContent = `${clave}: ${funcion}`;
+    p.textContent = clave + ": " + funcion;
     salida.appendChild(p);
   }
-  // TODO: los tres seguidos: los pares, después sus dobles y al final la suma de esos dobles.
-  //       Escribe en #salida5 una línea por paso.
+
+  console.log("Ver cadena: " + sumaTotal);
 }
 
 
-// ============================================================
 // Ejercicio 6 · Ciudades
-// ============================================================
 
 const ciudadesOriginal = ["Granada", "Sevilla", "Málaga", "Córdoba", "Jaén", "Almería", "Cádiz", "Huelva"];
-let ciudades = [...ciudadesOriginal];   // una copia: splice cambia ciudades y así podemos restaurarla
+let ciudades = [...ciudadesOriginal];
 
+// Pinta un badge por ciudad con su posición
 function mostrarCiudades() {
   const ciu = document.getElementById("ciudades");
 
-  ciu.innerHTML = "";
+  ciu.textContent = "";
 
   ciudades.forEach(function (ciudad, posicion) {
-    const p = document.createElement("p");
     const span = document.createElement("span");
     
-    span.textContent = `${posicion}`;
-    p.textContent = ` · ${ciudad}`;
+    span.textContent = posicion + " · " + ciudad;
+    span.classList.add("badge", "bg-secondary", "mx-1");
 
-    span.classList.add("badge", "bg-secondary");
-    p.prepend(span);
-    ciu.appendChild(p);
+    ciu.appendChild(span);
   });
-  // TODO: vacía #ciudades y pon un badge por ciudad con su posición: «0 · Granada», «1 · Sevilla»...
-  //       Pista: forEach le pasa a tu función dos datos: function (ciudad, posicion) { ... }.
+
+  console.log("Ciudades mostradas: " + comoTexto(ciudades));
 }
 
+// Muestra lo que devuelve slice(2, 5)
 function verSlice() {
   const salida = document.getElementById("salida6");
   const p = document.createElement("p");
   const p2 = document.createElement("p");
 
-  salida.innerHTML = "";
+  salida.textContent = "";
 
-  p.textContent = comoTexto(ciudades.slice(2, 5));
-  p2.textContent = "Ciudades disponibles: " + comoTexto(ciudades);
+  p.textContent = "La función slice(2, 5) devuelve: " + comoTexto(ciudades.slice(2, 5));
+  p2.textContent = "Ciudades en el array: " + comoTexto(ciudades);
 
   p2.classList.add("mb-0");
 
@@ -461,15 +459,17 @@ function verSlice() {
   salida.appendChild(p2);
 
   mostrarCiudades();
-  // TODO: guarda ciudades.slice(2, 5) y escribe en #salida6 qué devuelve y cuántas ciudades siguen en el array.
+
+  console.log("Ver slice: " + comoTexto(ciudades.slice(2, 5)));
 }
 
+// Quita dos ciudades con splice(2, 2)
 function hacerSplice() {
   const salida = document.getElementById("salida6");
   const p = document.createElement("p");
   const p2 = document.createElement("p");
 
-  salida.innerHTML = "";
+  salida.textContent = "";
 
   if (ciudades.length < 3) {
     p.textContent = "Debes restaurar la lista debido a ciudades insuficientes.";
@@ -478,7 +478,7 @@ function hacerSplice() {
     salida.appendChild(p);
   } else {
     p.textContent = "Ciudades que han sido eliminadas de la lista: " + comoTexto(ciudades.splice(2, 2));
-    p2.textContent = "Ciudades restantes: " + comoTexto(ciudades);
+    p2.textContent = "Ciudades restantes: " + comoTexto(ciudades) + " (" + ciudades.length + " ciudades restantes).";
 
     p2.classList.add("mb-0");
 
@@ -487,10 +487,11 @@ function hacerSplice() {
   }
 
   mostrarCiudades();
-  // TODO: si quedan menos de 3 ciudades, avisa en #salida6 de que hay que restaurar y no hagas nada más.
-  // TODO: si no, ciudades.splice(2, 2): escribe en #salida6 qué devuelve y cuántas quedan, y vuelve a pintar.
+
+  console.log("Hacer splice: " + comoTexto(ciudades));
 }
 
+// Vuelve a copiar las ciudades originales
 function restaurarCiudades() {
   const buscar = document.getElementById("buscarCiudad");
   const salida = document.getElementById("salida6");
@@ -501,9 +502,11 @@ function restaurarCiudades() {
   ciudades = [...ciudadesOriginal];
 
   mostrarCiudades();
-  // TODO: vuelve a copiar ciudadesOriginal en ciudades y pinta.
+
+  console.log("Ciudades restauradas.");
 }
 
+// Muestra lo que devuelven includes() e indexOf()
 function buscarCiudad() {
   const buscar = document.getElementById("buscarCiudad");
   const salida = document.getElementById("salida6");
@@ -512,17 +515,13 @@ function buscarCiudad() {
   const resultadoBusqueda = ciudades.includes(buscar.value.trim());
   const indice = ciudades.indexOf(buscar.value.trim());
 
-  salida.innerHTML = "";
+  salida.textContent = "";
 
   if (buscar.value.trim() === "") {
     p.textContent = "El campo de búsqueda está vacio.";
     p.classList.add("text-danger", "mb-0");
     salida.appendChild(p);
-  } else if (!resultadoBusqueda) {
-    p.textContent = "La ciudad que has buscado no se encuentra en la lista.";
-    p.classList.add("text-danger", "mb-0");
-    salida.appendChild(p);
-  }  else {
+  } else {
     p.textContent = "La función includes() devuelve " + resultadoBusqueda + ".";
     p2.textContent = "La función indexOf() devuelve " + indice + ".";
 
@@ -531,8 +530,8 @@ function buscarCiudad() {
     salida.appendChild(p);
     salida.appendChild(p2);
   }
-  // TODO: lee #buscarCiudad (value y trim). Si está vacío, avisa.
-  // TODO: escribe en #salida6 lo que dan includes() e indexOf() con ese nombre. Si no está, indexOf da -1.
+
+  console.log("Buscar ciudad: " + buscar.value.trim());
 }
 
 mostrarCiudades();
