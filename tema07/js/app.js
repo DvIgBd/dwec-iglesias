@@ -60,9 +60,21 @@ function formatearEuros(cantidad) {
 }
 
 function mostrarPrecio() {
-  const base = document.getElementById("base");
-  const iva = document.getElementById("iva");
-  const descuento = document.getElementById("descuento");
+  const error = document.getElementById("error1");
+
+  const base = Number(document.getElementById("base").value);
+  const iva = Number(document.getElementById("iva").value);
+  const descuento = Number(document.getElementById("descuento").value);
+
+  if (base < 0 || base)
+
+  if (descuento) {
+
+  }
+
+  console.log(base);
+  console.log(iva);
+  console.log(descuento);
   // TODO: lee #base, #iva y #descuento (value). El IVA conviértelo con Number().
   // TODO: si la base está vacía o es negativa, error en #error1 (quítale "d-none") y no sigas.
   // TODO: si el descuento está vacío, llama a calcularPrecio(base, iva), sin el tercer argumento, para que se
