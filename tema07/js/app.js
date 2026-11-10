@@ -42,9 +42,17 @@ function pintarLista(selector, textos) {
 //       iva vale 21 por defecto y descuento, 0 por defecto (parámetros por defecto).
 //       Primero se resta el descuento (un tanto por ciento de la base) y después se suma el IVA.
 //       Comprueba en la consola: calcularPrecio(100) tiene que dar 121.
-function calcularPrecio(base, iva, descuento) {
+function calcularPrecio(base, iva = 21, descuento = 0) {
+  const precioDescontado = (base * descuento) / 100;
+  const precioIva = ((base - precioDescontado) * iva) / 100;
+  let precioFinal = base + precioIva;
 
+  console.log("El precio final es: " + formatearEuros(precioFinal));
+
+  return precioFinal;
 }
+
+calcularPrecio(105);
 
 // Ya está hecha: 74.8 → "74.80 €"
 function formatearEuros(cantidad) {
@@ -52,6 +60,9 @@ function formatearEuros(cantidad) {
 }
 
 function mostrarPrecio() {
+  const base = document.getElementById("base");
+  const iva = document.getElementById("iva");
+  const descuento = document.getElementById("descuento");
   // TODO: lee #base, #iva y #descuento (value). El IVA conviértelo con Number().
   // TODO: si la base está vacía o es negativa, error en #error1 (quítale "d-none") y no sigas.
   // TODO: si el descuento está vacío, llama a calcularPrecio(base, iva), sin el tercer argumento, para que se
