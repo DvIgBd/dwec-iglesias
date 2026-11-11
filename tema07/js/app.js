@@ -45,7 +45,7 @@ function pintarLista(selector, textos) {
 function calcularPrecio(base, iva = 21, descuento = 0) {
   const precioDescontado = (base * descuento) / 100;
   const precioIva = ((base - precioDescontado) * iva) / 100;
-  let precioFinal = base + precioIva;
+  const precioFinal = base + precioIva;
 
   console.log("El precio final es: " + formatearEuros(precioFinal));
 
@@ -64,23 +64,37 @@ function mostrarPrecio() {
 
   const base = Number(document.getElementById("base").value);
   const iva = Number(document.getElementById("iva").value);
-  const descuento = Number(document.getElementById("descuento").value);
+  const descuento = document.getElementById("descuento").value;
 
-  if (base < 0 || base)
+  if (base < 0 || base === "") {
+    error.classList.remove("d-none");
+    return;
+  }
+  
 
-  if (descuento) {
+  let precioFinal;
 
+  if (descuento === "") {
+    precioFinal = calcularPrecio(Number(base), iva);
+  } else if (Number(descuento) >= 0 && Number(descuento) <= 100) {
+    precioFinal = calcularPrecio(Number(base), iva, Number(descuento));
+    error.classList.add("d-none");
+  } else {
+    error.classList.remove("d-none");
+    return;
   }
 
+  pintarLista("#salida1", [
+    `Precio sin IVA: ${formatearEuros(Number(base))}`,
+    `Descuento: ${descuento === "" ? 0 : descuento} %`,
+    `IVA: ${iva} %`,
+    `Precio final: ${formatearEuros(precioFinal)}`
+  ]);
+
+  console.log("Ejercicio 1: precio final →", precioFinal);
   console.log(base);
   console.log(iva);
   console.log(descuento);
-  // TODO: lee #base, #iva y #descuento (value). El IVA conviértelo con Number().
-  // TODO: si la base está vacía o es negativa, error en #error1 (quítale "d-none") y no sigas.
-  // TODO: si el descuento está vacío, llama a calcularPrecio(base, iva), sin el tercer argumento, para que se
-  //       use el valor por defecto. Si no, comprueba que está entre 0 y 100 y pásaselo.
-  // TODO: oculta el error y pinta el desglose en #salida1 con pintarLista():
-  //       «Precio sin IVA: …», «Descuento: … %», «IVA: … %» y «Precio final: …» (con formatearEuros).
 }
 
 
