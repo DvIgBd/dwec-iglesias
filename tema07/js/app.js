@@ -45,7 +45,7 @@ function pintarLista(selector, textos) {
 function calcularPrecio(base, iva = 21, descuento = 0) {
   const precioDescontado = (base * descuento) / 100;
   const precioIva = ((base - precioDescontado) * iva) / 100;
-  const precioFinal = base + precioIva;
+  const precioFinal = base - precioDescontado + precioIva;
 
   console.log("El precio final es: " + formatearEuros(precioFinal));
 
@@ -62,11 +62,12 @@ function formatearEuros(cantidad) {
 function mostrarPrecio() {
   const error = document.getElementById("error1");
 
-  const base = Number(document.getElementById("base").value);
+  const base = document.getElementById("base").value;
   const iva = Number(document.getElementById("iva").value);
   const descuento = document.getElementById("descuento").value;
 
   if (base < 0 || base === "") {
+    error.textContent = "La base no puede estar vacía o ser negativa.";
     error.classList.remove("d-none");
     return;
   }
@@ -78,12 +79,13 @@ function mostrarPrecio() {
     precioFinal = calcularPrecio(Number(base), iva);
   } else if (Number(descuento) >= 0 && Number(descuento) <= 100) {
     precioFinal = calcularPrecio(Number(base), iva, Number(descuento));
-    error.classList.add("d-none");
   } else {
+    error.textContent = "El descuento tiene que estar entre 0 y 100.";
     error.classList.remove("d-none");
     return;
   }
 
+  error.classList.add("d-none");
   pintarLista("#salida1", [
     `Precio sin IVA: ${formatearEuros(Number(base))}`,
     `Descuento: ${descuento === "" ? 0 : descuento} %`,
@@ -121,36 +123,28 @@ function comoTexto(pelicula) {
 //       sin llaves ni return. Comprueba después que cada botón sigue dando lo mismo.
 
 function verTitulos() {
-  const titulos = peliculas.map(function (pelicula) {
-    return pelicula.titulo;
-  });
+  const titulos = peliculas.map((pelicula) => pelicula.titulo);
   pintarLista("#salida2", titulos);
   document.querySelector("#mensaje2").textContent = `${titulos.length} títulos.`;
   console.log("Ejercicio 2: map →", titulos);
 }
 
 function verLargas() {
-  const largas = peliculas.filter(function (pelicula) {
-    return pelicula.duracion > 120;
-  });
+  const largas = peliculas.filter((pelicula) => pelicula.duracion > 120);
   pintarLista("#salida2", largas.map(comoTexto));   // comoTexto ya es una función: se pasa sin paréntesis
   document.querySelector("#mensaje2").textContent = `${largas.length} películas duran más de 2 horas.`;
   console.log("Ejercicio 2: filter →", largas);
 }
 
 function ordenarPorAnio() {
-  const ordenadas = [...peliculas].sort(function (a, b) {   // una copia: sort cambia el original
-    return a.anio - b.anio;
-  });
+  const ordenadas = [...peliculas].sort((a, b) => a.anio - b.anio);   // una copia: sort cambia el original
   pintarLista("#salida2", ordenadas.map(comoTexto));
   document.querySelector("#mensaje2").textContent = "De la más antigua a la más reciente.";
   console.log("Ejercicio 2: sort →", ordenadas);
 }
 
 function verDuracionTotal() {
-  const minutos = peliculas.reduce(function (total, pelicula) {
-    return total + pelicula.duracion;
-  }, 0);
+  const minutos = peliculas.reduce((total, pelicula) => total + pelicula.duracion, 0);
   pintarLista("#salida2", [`${minutos} minutos de películas`]);
   document.querySelector("#mensaje2").textContent = "La suma de las seis duraciones.";
   console.log("Ejercicio 2: reduce →", minutos);
