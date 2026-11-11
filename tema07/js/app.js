@@ -410,7 +410,12 @@ pintarAlumnos();
 //       Pon hoy a medianoche (hoy.setHours(0, 0, 0, 0)), resta las fechas, divide entre los milisegundos
 //       de un día y redondea con Math.round: con el cambio de hora, la resta no siempre da un número entero.
 function diasHasta(fecha) {
-
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  const milisegundosDia = 1000 * 60 * 60 * 24;
+  const dias = Math.round((fecha - hoy) / milisegundosDia);
+  console.log("Ejercicio 6: días hasta la fecha →", dias);
+  return dias;
 }
 
 function mostrarDias() {
@@ -425,7 +430,21 @@ function mostrarDias() {
   // Ya está hecho: de "2026-12-25" a un Date. Fíjate en el mes - 1: el mes va de 0 a 11
   const [anio, mes, dia] = valor.split("-").map(Number);
   const fecha = new Date(anio, mes - 1, dia);
+  const dias = diasHasta(fecha);
+  const nombreFecha = fecha.toLocaleDateString("es-ES", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
 
+  if (dias > 0) {
+    salida.textContent = `Faltan ${dias} días: será ${nombreFecha}.`;
+  } else if (dias === 0) {
+    salida.textContent = `Es hoy: ${nombreFecha}.`;
+  } else {
+    salida.textContent = `Fue hace ${Math.abs(dias)} días: fue ${nombreFecha}.`;
+  }
   // TODO: con diasHasta(fecha), escribe en #salida6a «Faltan N días: será viernes, 25 de diciembre de 2026.»,
   //       «Es hoy…» o «Fue hace N días…». El nombre de la fecha, con toLocaleDateString("es-ES", {…}).
 }
@@ -434,16 +453,29 @@ function mostrarDias() {
 //       Encadena trim, split(" "), filter (para quitar las palabras vacías si hay espacios dobles),
 //       map (la primera letra de cada palabra, en mayúscula) y join("").
 function iniciales(nombreCompleto) {
-
+  const resultado = nombreCompleto.trim().split(" ").filter((palabra) => palabra !== "").map((palabra) => palabra[0].toUpperCase()).join("");
+  console.log("Ejercicio 6: iniciales →", resultado);
+  return resultado;
 }
 
 // TODO: crearUsuario(nombreCompleto) devuelve las iniciales en minúsculas y tres cifras al azar, de 000 a 999:
 //       «lmo042». Pista: Math.random, Math.floor y padStart(3, "0").
 function crearUsuario(nombreCompleto) {
-
+  const numero = Math.floor(Math.random() * 1000);
+  const cifras = String(numero).padStart(3, "0");
+  const usuario = iniciales(nombreCompleto).toLowerCase() + cifras;
+  console.log("Ejercicio 6: usuario →", usuario);
+  return usuario;
 }
 
 function mostrarIniciales() {
-  // TODO: lee #nombre6. Si está vacío, avisa en #salida6b.
-  // TODO: si no, escribe en #salida6b «Iniciales: LMO · usuario: lmo042».
+  const nombre = document.querySelector("#nombre6").value;
+  const salida = document.querySelector("#salida6b");
+
+  if (nombre.trim() === "") {
+    salida.textContent = "Escribe un nombre completo.";
+    return;
+  }
+
+  salida.textContent = `Iniciales: ${iniciales(nombre)} · usuario: ${crearUsuario(nombre)}`;
 }
