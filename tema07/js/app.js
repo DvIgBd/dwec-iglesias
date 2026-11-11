@@ -1,18 +1,3 @@
-/*
-  Tarea 7 · DWEC · [Tu nombre y apellidos]
-  Funciones, flechas y clases.
-
-  Cómo usar esta plantilla:
-  · Hay una función por botón. Escribe tu código donde pone TODO y, cuando termines, borra el TODO.
-  · La regla de este tema:
-      - declaración, function nombre() { ... }, para las funciones con nombre, como las de los botones;
-      - FLECHA para todos los callbacks: forEach, map, filter, sort, reduce, find, some...;
-      - nunca una flecha como método: en las clases, la forma corta media() { ... }.
-  · Los resultados se pintan en la página como en los temas 5 y 6: createElement, textContent, classList y append.
-  · Cada función deja también su rastro en la consola con console.log().
-  · let y const, nunca var. Compara siempre con ===. Comillas rectas.
-*/
-
 console.log("app.js cargado");
 
 
@@ -38,10 +23,8 @@ function pintarLista(selector, textos) {
 // Ejercicio 1 · Precio final
 // ============================================================
 
-// TODO: calcularPrecio(base, iva, descuento) devuelve el precio final con return. No lee ni pinta nada.
-//       iva vale 21 por defecto y descuento, 0 por defecto (parámetros por defecto).
-//       Primero se resta el descuento (un tanto por ciento de la base) y después se suma el IVA.
-//       Comprueba en la consola: calcularPrecio(100) tiene que dar 121.
+// Solo calcula y devuelve el precio final: primero resta el descuento y después suma el IVA.
+// calcularPrecio(100) → 121 (usa los valores por defecto: IVA 21 % y sin descuento)
 function calcularPrecio(base, iva = 21, descuento = 0) {
   const precioDescontado = (base * descuento) / 100;
   const precioIva = ((base - precioDescontado) * iva) / 100;
@@ -52,13 +35,12 @@ function calcularPrecio(base, iva = 21, descuento = 0) {
   return precioFinal;
 }
 
-calcularPrecio(105);
-
 // Ya está hecha: 74.8 → "74.80 €"
 function formatearEuros(cantidad) {
   return cantidad.toFixed(2) + " €";
 }
 
+// Botón «Calcular»: lee el formulario, valida y pinta el desglose
 function mostrarPrecio() {
   const error = document.getElementById("error1");
 
@@ -66,16 +48,17 @@ function mostrarPrecio() {
   const iva = Number(document.getElementById("iva").value);
   const descuento = document.getElementById("descuento").value;
 
+  // La base se comprueba como texto: Number("") daría 0 y no detectaríamos que está vacía
   if (base < 0 || base === "") {
     error.textContent = "La base no puede estar vacía o ser negativa.";
     error.classList.remove("d-none");
     return;
   }
-  
 
   let precioFinal;
 
   if (descuento === "") {
+    // Sin tercer argumento: se usa el descuento por defecto (0)
     precioFinal = calcularPrecio(Number(base), iva);
   } else if (Number(descuento) >= 0 && Number(descuento) <= 100) {
     precioFinal = calcularPrecio(Number(base), iva, Number(descuento));
@@ -94,9 +77,6 @@ function mostrarPrecio() {
   ]);
 
   console.log("Ejercicio 1: precio final →", precioFinal);
-  console.log(base);
-  console.log(iva);
-  console.log(descuento);
 }
 
 
@@ -118,9 +98,7 @@ function comoTexto(pelicula) {
   return `${pelicula.titulo} (${pelicula.anio}) · ${pelicula.duracion} min`;
 }
 
-// Las cuatro funciones siguientes ya funcionan, pero sus callbacks están escritos con function, como en el tema 6.
-// TODO: pasa a flecha los cuatro callbacks (map, filter, sort y reduce). Si el cuerpo es solo una expresión,
-//       sin llaves ni return. Comprueba después que cada botón sigue dando lo mismo.
+// Callbacks pasados de function a flecha: como el cuerpo es una sola expresión, van sin llaves ni return
 
 function verTitulos() {
   const titulos = peliculas.map((pelicula) => pelicula.titulo);
@@ -150,6 +128,7 @@ function verDuracionTotal() {
   console.log("Ejercicio 2: reduce →", minutos);
 }
 
+// find devuelve la primera que cumple la condición, o undefined si no hay ninguna
 function buscarAntigua() {
   const antigua = peliculas.find((pelicula) => pelicula.anio < 1990);
 
@@ -171,9 +150,8 @@ function buscarAntigua() {
 const numeros = [3, -1, 4, -1, 5, 9];
 document.querySelector("#numeros3").textContent = `const numeros = [${numeros.join(", ")}];`;
 
-// TODO: transformar(lista, operacion) hace a mano lo que hace map, sin usar map:
-//       recorre lista con for…of, llama a operacion con cada elemento, guarda lo que devuelve
-//       en un array nuevo y, al final, devuelve ese array.
+// Hace a mano lo mismo que map: operacion es el callback que se aplica a cada elemento.
+// Devuelve un array nuevo, así que la lista original no cambia.
 function transformar(lista, operacion) {
   const resultado = [];
   for (const elemento of lista) {
@@ -200,7 +178,7 @@ function mostrar3(nombre, resultado, conMap) {
   });
 }
 
-// El modelo: funcionará cuando hayas escrito transformar()
+// El modelo
 function verDobles() {
   const resultado = transformar(numeros, (n) => n * 2);
   mostrar3("dobles", resultado, numeros.map((n) => n * 2));
@@ -214,7 +192,7 @@ function verCuadrados() {
 }
 
 function verAbsolutos() {
-  const resultado = transformar(numeros, Math.abs);
+  const resultado = transformar(numeros, Math.abs);   // Math.abs ya es una función: va sin paréntesis
   mostrar3("absolutos", resultado, numeros.map(Math.abs));
   console.log("Ejercicio 3: absolutos →", resultado);
 }
@@ -224,9 +202,8 @@ function verAbsolutos() {
 // Ejercicio 4 · Dos contadores con closure
 // ============================================================
 
-// TODO: crearContador(paso) guarda una variable cuenta que empieza en 0 y DEVUELVE una función.
-//       Cada vez que se llama a esa función, suma paso a cuenta y devuelve el valor nuevo.
-//       paso vale 1 por defecto.
+// Closure: la función devuelta recuerda su propia cuenta y su paso.
+// Cada llamada a crearContador() crea una cuenta nueva, por eso los dos contadores no se mezclan.
 function crearContador(paso = 1) {
   let cuenta = 0;
   return () => {
@@ -264,6 +241,7 @@ class Alumno {
     this.notas = [];
   }
 
+  // Los métodos van con la forma corta, nunca con flecha: una flecha no tendría su propio this
   anadirNota(nota) {
     if (Number.isNaN(nota) || nota < 0 || nota > 10) {
       return false;
@@ -283,25 +261,23 @@ class Alumno {
   presentarse() {
     return `${this.nombre}, de ${this.curso}`;
   }
-  // TODO: anadirNota(nota): si la nota no es un número (Number.isNaN) o no está entre 0 y 10, devuelve false;
-  //       si es válida, la añade a this.notas y devuelve true.
-  // TODO: media(): 0 si no hay notas; si hay, la suma con reduce (con flecha) entre el número de notas.
-  // TODO: presentarse(): devuelve «Lucía Martín, de 2.º DAW».
-  //       Recuerda: en una clase, los métodos van sin function y sin comas entre ellos.
 }
 
 class AlumnoFCT extends Alumno {
   constructor(nombre, curso, empresa) {
-    super(nombre, curso);
+    super(nombre, curso);   // primero el constructor de Alumno, antes de usar this
     this.empresa = empresa;
   }
 
+  // Aprovecha la frase de Alumno y le añade la empresa
   presentarse() {
     return `${super.presentarse()}, en prácticas en ${this.empresa}`;
   }
 }
 
 const alumnos = [];
+
+// Alumnos de partida: uno de cada clase
 
 const david = new Alumno("David Martín Martí", "2.º DAW");
 david.anadirNota(7);
@@ -313,9 +289,6 @@ david2.anadirNota(8);
 
 alumnos.push(david, david2);
 console.log("Ejercicio 5: alumnos de partida →", alumnos);
-
-// TODO: cuando tengas las clases, crea aquí dos alumnos de partida y añádelos a alumnos con push:
-//       un Alumno con dos notas y un AlumnoFCT con otras dos.
 
 // Ya está hecha: pinta una tarjeta por alumno en #listaAlumnos y actualiza #totalAlumnos
 function pintarAlumnos() {
@@ -359,6 +332,7 @@ function pintarAlumnos() {
   document.querySelector("#totalAlumnos").textContent = alumnos.length;
 }
 
+// Botón «Crear»: con empresa crea un AlumnoFCT y, sin ella, un Alumno
 function crearAlumno() {
   const error = document.querySelector("#error5");
   const nombre = document.querySelector("#nombre5").value.trim();
@@ -380,6 +354,7 @@ function crearAlumno() {
   }
 
   if (textoNotas !== "") {
+    // "7, 8.5, 6" → ["7", " 8.5", " 6"] → [7, 8.5, 6]
     const notas = textoNotas.split(",").map((texto) => Number(texto.trim()));
     const hayNotaMala = notas.some((nota) => Number.isNaN(nota) || nota < 0 || nota > 10);
     if (hayNotaMala) {
@@ -406,9 +381,8 @@ pintarAlumnos();
 // Ejercicio 6 · Fechas y textos
 // ============================================================
 
-// TODO: diasHasta(fecha) devuelve cuántos días faltan desde hoy hasta fecha (negativo si ya pasó).
-//       Pon hoy a medianoche (hoy.setHours(0, 0, 0, 0)), resta las fechas, divide entre los milisegundos
-//       de un día y redondea con Math.round: con el cambio de hora, la resta no siempre da un número entero.
+// Días desde hoy hasta fecha (negativo si ya pasó).
+// Math.round porque con el cambio de hora un día puede durar 23 o 25 horas.
 function diasHasta(fecha) {
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
@@ -438,6 +412,8 @@ function mostrarDias() {
     year: "numeric"
   });
 
+  console.log("Ejercicio 6: fecha →", nombreFecha);
+
   if (dias > 0) {
     salida.textContent = `Faltan ${dias} días: será ${nombreFecha}.`;
   } else if (dias === 0) {
@@ -445,21 +421,16 @@ function mostrarDias() {
   } else {
     salida.textContent = `Fue hace ${Math.abs(dias)} días: fue ${nombreFecha}.`;
   }
-  // TODO: con diasHasta(fecha), escribe en #salida6a «Faltan N días: será viernes, 25 de diciembre de 2026.»,
-  //       «Es hoy…» o «Fue hace N días…». El nombre de la fecha, con toLocaleDateString("es-ES", {…}).
 }
 
-// TODO: iniciales(nombreCompleto) devuelve las iniciales en mayúsculas: «lucía martín ortega» → «LMO».
-//       Encadena trim, split(" "), filter (para quitar las palabras vacías si hay espacios dobles),
-//       map (la primera letra de cada palabra, en mayúscula) y join("").
+// «lucía martín ortega» → «LMO». El filter quita las palabras vacías que dejan los espacios dobles.
 function iniciales(nombreCompleto) {
   const resultado = nombreCompleto.trim().split(" ").filter((palabra) => palabra !== "").map((palabra) => palabra[0].toUpperCase()).join("");
   console.log("Ejercicio 6: iniciales →", resultado);
   return resultado;
 }
 
-// TODO: crearUsuario(nombreCompleto) devuelve las iniciales en minúsculas y tres cifras al azar, de 000 a 999:
-//       «lmo042». Pista: Math.random, Math.floor y padStart(3, "0").
+// Iniciales en minúsculas y tres cifras al azar: «lmo042» (padStart rellena con ceros)
 function crearUsuario(nombreCompleto) {
   const numero = Math.floor(Math.random() * 1000);
   const cifras = String(numero).padStart(3, "0");
@@ -478,4 +449,5 @@ function mostrarIniciales() {
   }
 
   salida.textContent = `Iniciales: ${iniciales(nombre)} · usuario: ${crearUsuario(nombre)}`;
+  console.log("Ejercicio 6: nombre →", nombre);
 }
